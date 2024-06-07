@@ -35,7 +35,7 @@ export default function EventossView() {
 
       <Grid container spacing={3}>
         {products.map((product) => (
-          <Grid key={product.id} xs={12} sm={6} md={3}>
+          <Grid key={product.id} xs={12} sm={6} md={4}>
             <ProductCard product={product} />
           </Grid>
         ))}
