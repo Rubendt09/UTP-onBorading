@@ -16,7 +16,6 @@ export default function CoursesView() {
         Mis cursos
       </Typography>
 
-
       <Grid container spacing={3}>
         {courses.map((course) => (
           <Grid key={course.id} xs={12} sm={6} md={4}>

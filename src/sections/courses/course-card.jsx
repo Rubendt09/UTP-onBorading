@@ -4,9 +4,12 @@ import Box from '@mui/material/Box';
 import Link from '@mui/material/Link';
 import Card from '@mui/material/Card';
 import Stack from '@mui/material/Stack';
+import Typography from '@mui/material/Typography';
+
+import { RouterLink } from 'src/routes/components';
 
 import Label from 'src/components/label';
-import { ColorPreview } from 'src/components/color-utils';
+
 
 // ----------------------------------------------------------------------
 
@@ -14,15 +17,7 @@ export default function ShopCourseCard({ course }) {
   const renderStatus = (
     <Label
       variant="filled"
-      color={(course.status === 'Completado' && 'success') || 'info'}
-      sx={{
-        zIndex: 9,
-        top: 16,
-        right: 16,
-        position: 'absolute',
-        textTransform: 'capitalize',
-      }}
-    >
+      color={(course.status === 'Completado' && 'success') || 'info'}>
       {course.status}
     </Label>
   );
@@ -42,27 +37,46 @@ export default function ShopCourseCard({ course }) {
     />
   );
 
+  const renderImgTutor = (
+    <img
+        src="https://class.utp.edu.pe/static/media/teacher.2bee17b1.svg"
+        alt="Tutor Curso Introducción"
+        style={{
+          width: '32px',
+          height: '32px',
+          borderRadius: '50%',
+          objectFit: 'cover',
+        }}
+    />
+  );
 
 
   return (
-    <Card>
-      <Box sx={{ pt: '55%', position: 'relative' }}>
-        {course.status && renderStatus}
-
+    <Link component={RouterLink} href={`/courses/${course.links}`} sx={{ display: 'contents' }} >
+      <Card>
+      <Box sx={{ pt: '35%', position: 'relative' }}>
         {renderImg}
       </Box>
 
       <Stack spacing={2} sx={{ p: 3 }}>
-        <Link color="inherit" underline="hover" variant="subtitle2" noWrap>
+        <Typography color="inherit" underline="hover" variant="subtitle2">
           {course.name}
-        </Link>
+        </Typography>
+
 
         <Stack direction="row" alignItems="center" justifyContent="space-between">
-          <ColorPreview colors={course.colors} />
-   
+          <Stack direction="row" alignItems="center" gap={1}>
+            {renderImgTutor}
+            <Typography color="inherit"  fontSize={12} >
+              Tutor Curso Introducción
+            </Typography>
+          </Stack>
+          {course.status && renderStatus}
         </Stack>
       </Stack>
-    </Card>
+    </Card>       
+    </Link>
+    
   );
 }
 

@@ -18,8 +18,8 @@ export default function ColorPreview({ colors, limit = 3, sx }) {
           key={color + index}
           sx={{
             ml: -0.75,
-            width: 16,
-            height: 16,
+            width: 32,
+            height: 32,
             bgcolor: color,
             borderRadius: '50%',
             border: (theme) => `solid 2px ${theme.palette.background.paper}`,

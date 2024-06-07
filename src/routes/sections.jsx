@@ -5,6 +5,7 @@ import DashboardLayout from 'src/layouts/dashboard';
 
 export const IndexPage = lazy(() => import('src/pages/app'));
 export const BlogPage = lazy(() => import('src/pages/blog'));
+export const UtpClass = lazy(() => import('src/pages/utp+class'));
 export const UserPage = lazy(() => import('src/pages/user'));
 export const LoginPage = lazy(() => import('src/pages/login'));
 export const CoursesPage = lazy(() => import('src/pages/courses'));
@@ -25,7 +26,9 @@ export default function Router() {
       children: [
         { element: <IndexPage />, index: true },
         { path: 'user', element: <UserPage /> },
-        { path: 'courses', element: <CoursesPage /> },
+        { path: 'courses', element: <CoursesPage />},
+        { path: 'courses/utp+class', element: <UtpClass /> },
+        { path: 'courses/utp+portal', element: <UtpClass /> },
         { path: 'blog', element: <BlogPage /> },
       ],
     },
