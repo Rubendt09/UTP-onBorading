@@ -4,9 +4,6 @@ import Box from '@mui/material/Box';
 import Link from '@mui/material/Link';
 import Card from '@mui/material/Card';
 import Stack from '@mui/material/Stack';
-import Typography from '@mui/material/Typography';
-
-import { fCurrency } from 'src/utils/format-number';
 
 import Label from 'src/components/label';
 import { ColorPreview } from 'src/components/color-utils';
@@ -17,13 +14,13 @@ export default function ShopProductCard({ product }) {
   const renderStatus = (
     <Label
       variant="filled"
-      color={(product.status === 'sale' && 'error') || 'info'}
+      color={(product.status === 'Completado' && 'success') || 'info'}
       sx={{
         zIndex: 9,
         top: 16,
         right: 16,
         position: 'absolute',
-        textTransform: 'uppercase',
+        textTransform: 'capitalize',
       }}
     >
       {product.status}
@@ -45,26 +42,11 @@ export default function ShopProductCard({ product }) {
     />
   );
 
-  const renderPrice = (
-    <Typography variant="subtitle1">
-      <Typography
-        component="span"
-        variant="body1"
-        sx={{
-          color: 'text.disabled',
-          textDecoration: 'line-through',
-        }}
-      >
-        {product.priceSale && fCurrency(product.priceSale)}
-      </Typography>
-      &nbsp;
-      {fCurrency(product.price)}
-    </Typography>
-  );
+
 
   return (
     <Card>
-      <Box sx={{ pt: '100%', position: 'relative' }}>
+      <Box sx={{ pt: '55%', position: 'relative' }}>
         {product.status && renderStatus}
 
         {renderImg}
@@ -77,7 +59,7 @@ export default function ShopProductCard({ product }) {
 
         <Stack direction="row" alignItems="center" justifyContent="space-between">
           <ColorPreview colors={product.colors} />
-          {renderPrice}
+   
         </Stack>
       </Stack>
     </Card>

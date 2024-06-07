@@ -18,7 +18,7 @@ const navConfig = [
     icon: icon('ic_user'),
   },
   {
-    title: 'product',
+    title: 'Cursos',
     path: '/products',
     icon: icon('ic_cart'),
   },
