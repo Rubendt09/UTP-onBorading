@@ -2,13 +2,13 @@ import Container from '@mui/material/Container';
 import Grid from '@mui/material/Unstable_Grid2';
 import Typography from '@mui/material/Typography';
 
-import { products } from 'src/_mock/products';
+import { courses } from 'src/_mock/courses';
 
-import ProductCard from '../product-card';
+import CourseCard from '../course-card';
 
 // ----------------------------------------------------------------------
 
-export default function ProductsView() {
+export default function CoursesView() {
 
   return (
     <Container>
@@ -18,9 +18,9 @@ export default function ProductsView() {
 
 
       <Grid container spacing={3}>
-        {products.map((product) => (
-          <Grid key={product.id} xs={12} sm={6} md={4}>
-            <ProductCard product={product} />
+        {courses.map((course) => (
+          <Grid key={course.id} xs={12} sm={6} md={4}>
+            <CourseCard course={course} />
           </Grid>
         ))}
       </Grid>

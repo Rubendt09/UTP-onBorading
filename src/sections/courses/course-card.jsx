@@ -10,11 +10,11 @@ import { ColorPreview } from 'src/components/color-utils';
 
 // ----------------------------------------------------------------------
 
-export default function ShopProductCard({ product }) {
+export default function ShopCourseCard({ course }) {
   const renderStatus = (
     <Label
       variant="filled"
-      color={(product.status === 'Completado' && 'success') || 'info'}
+      color={(course.status === 'Completado' && 'success') || 'info'}
       sx={{
         zIndex: 9,
         top: 16,
@@ -23,15 +23,15 @@ export default function ShopProductCard({ product }) {
         textTransform: 'capitalize',
       }}
     >
-      {product.status}
+      {course.status}
     </Label>
   );
 
   const renderImg = (
     <Box
       component="img"
-      alt={product.name}
-      src={product.cover}
+      alt={course.name}
+      src={course.cover}
       sx={{
         top: 0,
         width: 1,
@@ -47,18 +47,18 @@ export default function ShopProductCard({ product }) {
   return (
     <Card>
       <Box sx={{ pt: '55%', position: 'relative' }}>
-        {product.status && renderStatus}
+        {course.status && renderStatus}
 
         {renderImg}
       </Box>
 
       <Stack spacing={2} sx={{ p: 3 }}>
         <Link color="inherit" underline="hover" variant="subtitle2" noWrap>
-          {product.name}
+          {course.name}
         </Link>
 
         <Stack direction="row" alignItems="center" justifyContent="space-between">
-          <ColorPreview colors={product.colors} />
+          <ColorPreview colors={course.colors} />
    
         </Stack>
       </Stack>
@@ -66,6 +66,6 @@ export default function ShopProductCard({ product }) {
   );
 }
 
-ShopProductCard.propTypes = {
-  product: PropTypes.object,
+ShopCourseCard.propTypes = {
+  course: PropTypes.object,
 };
