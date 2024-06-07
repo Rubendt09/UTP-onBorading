@@ -10,7 +10,6 @@ import Grid from '@mui/material/Grid';
 
 import PushPinOutlinedIcon from '@mui/icons-material/PushPinOutlined';
 import { Avatar } from '@mui/material';
-import Router from 'src/routes/sections';
 
 // ----------------------------------------------------------------------
 
@@ -68,7 +67,7 @@ export default function AppView() {
         </Grid>
       </Card>
 
-      {/** Contenido de app */}
+      {/** Contenido de apps */}
 
       <Box
         sx={{
@@ -87,7 +86,6 @@ export default function AppView() {
             height: '220px',
             boxShadow: 3,
             borderRadius: 2,
-            mb: 4, 
             backgroundImage: 'url(/assets/references/utpclass.png)',
             backgroundSize: 'cover',
             backgroundPosition: 'center',
@@ -103,7 +101,6 @@ export default function AppView() {
             height: '220px',
             boxShadow: 3,
             borderRadius: 2,
-            mb: 4, // Espacio entre las tarjetas
             backgroundImage: 'url(/assets/references/utpportal.png)',
             backgroundSize: 'cover',
             backgroundPosition: 'center',
@@ -119,7 +116,6 @@ export default function AppView() {
             height: '220px',
             boxShadow: 3,
             borderRadius: 2,
-            mb: 4, // Espacio entre las tarjetas
             backgroundImage: 'url(/assets/references/utpinfo.png)',
             backgroundSize: 'cover',
             backgroundPosition: 'center',
@@ -129,6 +125,7 @@ export default function AppView() {
           }}
         />
       </Box>
+      
     </Container>
   );
 }
