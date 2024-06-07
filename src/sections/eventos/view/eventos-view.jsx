@@ -14,7 +14,7 @@ import ProductCartWidget from '../product-cart-widget';
 
 // ----------------------------------------------------------------------
 
-export default function ProductsView() {
+export default function EventossView() {
   const [openFilter, setOpenFilter] = useState(false);
 
   const handleOpenFilter = () => {
@@ -28,36 +28,19 @@ export default function ProductsView() {
   return (
     <Container>
       <Typography variant="h4" sx={{ mb: 5 }}>
-        Productos
+        Recuerda que tu asistencia en los eventos es obligatoria
       </Typography>
 
-      <Stack
-        direction="row"
-        alignItems="center"
-        flexWrap="wrap-reverse"
-        justifyContent="flex-end"
-        sx={{ mb: 5 }}
-      >
-        <Stack direction="row" spacing={1} flexShrink={0} sx={{ my: 1 }}>
-          <ProductFilters
-            openFilter={openFilter}
-            onOpenFilter={handleOpenFilter}
-            onCloseFilter={handleCloseFilter}
-          />
-
-          <ProductSort />
-        </Stack>
-      </Stack>
+      
 
       <Grid container spacing={3}>
         {products.map((product) => (
-          <Grid key={product.id} xs={12} sm={6} md={3}>
+          <Grid key={product.id} xs={12} sm={6} md={4}>
             <ProductCard product={product} />
           </Grid>
         ))}
       </Grid>
 
-      <ProductCartWidget />
     </Container>
   );
 }
