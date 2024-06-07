@@ -5,25 +5,35 @@ import { alpha } from '@mui/material/styles';
 // SETUP COLORS
 // GREY IS THE PRINCIPAL THEME
 
+// 100 fondo de la pagina
+// 200 cabecera de la tabl user
+
+// 500 color de fondo de user y letras en general
+// 600 color de los iconos
+// 800 color de texto global
+
 export const grey = {
   0: '#FFFFFF',
-  100: '#FFF3F3',
-  200: '#F4F6F8',
+  100: '#FFF3F3', 
+  200: '#FFEFEF',
   300: '#DFE3E8',
   400: '#C4CDD5',
   500: '#919EAB',
-  600: '#637381',
+  600: '#000000',
   700: '#454F5B',
-  800: '#212B36',
+  800: '#000F37',
   900: '#161C24',
 };
 
+// main color de seleccion de opciones
+// contrastText color de boton de error 404
+
 export const primary = {
-  lighter: '#D0ECFE',
-  light: '#73BAFB',
-  main: '#1877F2',
-  dark: '#0C44AE',
-  darker: '#042174',
+  lighter: '#F8B6D4',
+  light: '#F482A2',
+  main: '#F82650',
+  dark: '#A81937',
+  darker: '#6C1225',
   contrastText: '#FFFFFF',
 };
 
@@ -35,6 +45,9 @@ export const secondary = {
   darker: '#27097A',
   contrastText: '#FFFFFF',
 };
+
+// contrastText color de NEW en los productos
+// main color del contenedor de NEW
 
 export const info = {
   lighter: '#CAFDF5',
@@ -57,7 +70,7 @@ export const success = {
 export const warning = {
   lighter: '#FFF5CC',
   light: '#FFD666',
-  main: '#FFAB00',
+  main: '#FFD666',
   dark: '#B76E00',
   darker: '#7A4100',
   contrastText: grey[800],
