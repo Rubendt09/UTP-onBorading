@@ -28,11 +28,18 @@ const navConfig = [
     icon: icon('courses'),
   },
   {
-    title: 'product',
+    title: 'Help',
     path: '/products',
-    icon: icon('ic_cart'),
+    icon: icon('help'),
   },
+
+
   {/*
+    title: 'Products',
+    path: '/products',
+    icon: icon('help'),
+  },
+  {
     title: 'blog',
     path: '/blog',
     icon: icon('ic_blog'),
