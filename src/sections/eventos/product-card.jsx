@@ -43,13 +43,14 @@ export default function ShopeventoCard({ evento, onClick, sx }) {
             </Box>
           </Grid>
 
+
           <Grid item xs={7}>
             <Stack spacing={0} sx={{ p: 1, height: '100%' }}>
               <Typography variant="h6" sx={{ fontWeight: 'bold', justifyContent: 'center' }}>
                 {evento.name}
               </Typography>
 
-              <Stack spacing={0} sx={{ justifyContent: 'center', color: '#515860' }}>
+              <Stack spacing={0} sx={{ justifyContent: 'center', color: '#515860', ml:'12px' }}>
                 {renderLugar}
                 {renderFecha}
               </Stack>

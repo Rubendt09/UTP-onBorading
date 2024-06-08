@@ -1,15 +1,26 @@
 import PropTypes from 'prop-types';
-
-
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-
 import OutlinedInput from '@mui/material/OutlinedInput';
 import InputAdornment from '@mui/material/InputAdornment';
-
+import { styled } from '@mui/material/styles';
 import Iconify from 'src/components/iconify';
 
 // ----------------------------------------------------------------------
+
+// Estilo personalizado para la barra de búsqueda
+const SearchStyle = styled(OutlinedInput)(({ theme }) => ({
+  width: '100%',
+  transition: theme.transitions.create(['box-shadow', 'width'], {
+    easing: theme.transitions.easing.easeInOut,
+    duration: theme.transitions.duration.shorter,
+  }),
+  '&.Mui-focused': { width: '100%', boxShadow: theme.customShadows.z8 },
+  '& fieldset': {
+    borderWidth: `1px !important`,
+    borderColor: `${theme.palette.grey[500_32]} !important`,
+  },
+}));
 
 export default function UserTableToolbar({ numSelected, filterName, onFilterName }) {
   return (
@@ -30,7 +41,7 @@ export default function UserTableToolbar({ numSelected, filterName, onFilterName
           {numSelected} selected
         </Typography>
       ) : (
-        <OutlinedInput
+        <SearchStyle
           value={filterName}
           onChange={onFilterName}
           placeholder="Search user..."
@@ -44,8 +55,6 @@ export default function UserTableToolbar({ numSelected, filterName, onFilterName
           }
         />
       )}
-
-      
     </Toolbar>
   );
 }

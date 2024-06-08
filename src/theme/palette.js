@@ -14,12 +14,12 @@ import { alpha } from '@mui/material/styles';
 
 export const grey = {
   0: '#FFFFFF',
-  100: '#FFF3F3', 
+  100: '#ECF4F9', 
   200: '#FFEFEF',
   300: '#DFE3E8',
   400: '#C4CDD5',
-  500: '#919EAB',
-  600: '#000000',
+  500: '#000F37',
+  600: '#000F37',
   700: '#454F5B',
   800: '#000F37',
   900: '#161C24',
@@ -31,8 +31,8 @@ export const grey = {
 export const primary = {
   lighter: '#F8B6D4',
   light: '#F482A2',
-  main: '#F82650',
-  dark: '#A81937',
+  main: '#5B36F2',
+  dark: '#745ef6',
   darker: '#6C1225',
   contrastText: '#FFFFFF',
 };
@@ -46,16 +46,16 @@ export const secondary = {
   contrastText: '#FFFFFF',
 };
 
-// contrastText color de NEW en los productos
-// main color del contenedor de NEW
+// contrastText color de texto en PROGRESO
+// main color del contenedor de EN PROGRESO
 
 export const info = {
   lighter: '#CAFDF5',
   light: '#61F3F3',
-  main: '#BEC5CC',
+  main: '#FDDC70  ',
   dark: '#006C9C',
   darker: '#003768',
-  contrastText: '#4A4F55',
+  contrastText: '#69493A',
 };
 
 export const success = {
