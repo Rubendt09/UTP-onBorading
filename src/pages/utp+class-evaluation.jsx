@@ -1,6 +1,6 @@
 import { Helmet } from 'react-helmet-async';
 
-import { DetailCourseView } from 'src/sections/detail-course';
+import { LoginView } from 'src/sections/login';
 
 // ----------------------------------------------------------------------
 
@@ -8,10 +8,10 @@ export default function LoginPage() {
   return (
     <>
       <Helmet>
-        <title> UTP+class | UTP </title>
+        <title> Login | Minimal UI </title>
       </Helmet>
 
-      <DetailCourseView />
+      <LoginView />
     </>
   );
 }
