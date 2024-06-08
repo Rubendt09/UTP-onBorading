@@ -1,5 +1,4 @@
 import { useState } from 'react';
-
 import Box from '@mui/material/Box';
 import Link from '@mui/material/Link';
 import Card from '@mui/material/Card';
@@ -11,20 +10,15 @@ import IconButton from '@mui/material/IconButton';
 import LoadingButton from '@mui/lab/LoadingButton';
 import { alpha, useTheme } from '@mui/material/styles';
 import InputAdornment from '@mui/material/InputAdornment';
-
 import { useRouter } from 'src/routes/hooks';
-
 import { bgGradient } from 'src/theme/css';
-
 import Iconify from 'src/components/iconify';
 
 // ----------------------------------------------------------------------
 
 export default function LoginView() {
   const theme = useTheme();
-
   const router = useRouter();
-
   const [showPassword, setShowPassword] = useState(false);
 
   const handleClick = () => {
@@ -33,12 +27,29 @@ export default function LoginView() {
 
   const renderForm = (
     <>
-      <Stack spacing={3}>
-        <TextField name="email" label="Email address" />
+      <Stack spacing={2}> {/* Ajuste de espaciado aquí */}
+        <Typography variant="subtitle1" gutterBottom>
+          Codigo UTP
+        </Typography>
+        <TextField
+          name="email"
+          InputProps={{
+            endAdornment: (
+              <InputAdornment position="end">
+                <Iconify icon="ph:student" />
+              </InputAdornment>
+            ),
+          }}
+        />
+        <Typography variant="caption" color="text.secondary" sx={{ display: 'flex', alignItems: 'center'}} >
+          <Iconify icon="material-symbols:info" /> Ejemplo de usuario: U1533148 (no digitar el @utp.edu.pe)
+        </Typography>
 
+        <Typography variant="subtitle1"> 
+          Contraseña
+        </Typography>
         <TextField
           name="password"
-          label="Password"
           type={showPassword ? 'text' : 'password'}
           InputProps={{
             endAdornment: (
@@ -52,9 +63,9 @@ export default function LoginView() {
         />
       </Stack>
 
-      <Stack direction="row" alignItems="center" justifyContent="flex-end" sx={{ my: 3 }}>
+      <Stack direction="row" alignItems="center" justifyContent="flex-end" sx={{ my: 2 }}>
         <Link variant="subtitle2" underline="hover">
-          Forgot password?
+          ¿Olvidaste tu contraseña?
         </Link>
       </Stack>
 
@@ -66,7 +77,7 @@ export default function LoginView() {
         color="inherit"
         onClick={handleClick}
       >
-        Login
+        Iniciar sesión
       </LoadingButton>
     </>
   );
@@ -81,7 +92,6 @@ export default function LoginView() {
         height: 1,
       }}
     >
-
       <Stack alignItems="center" justifyContent="center" sx={{ height: 1 }}>
         <Card
           sx={{
@@ -90,19 +100,13 @@ export default function LoginView() {
             maxWidth: 420,
           }}
         >
-          <Typography variant="h4">Sign in to Minimal</Typography>
-
+          <img src="/assets/images/logo/utpOnboarding.png" alt="UTP Onboarding Logo" style={{ width: '100%', marginBottom: '30px' }} />
+          
           <Typography variant="body2" sx={{ mt: 2, mb: 1 }}>
-            Ingresa con tu cuenta academica 
-            
+            Ingresa con tu cuenta academica
           </Typography>
-
-          <Link variant="subtitle2" sx={{ ml: 0.5 }} >
-              Aun no sabes tus credenciales?
-            </Link>
-
-          <Divider sx={{ my: 3 }}/>
-
+          
+          <Divider sx={{ my: 3 }} />
           {renderForm}
         </Card>
       </Stack>
