@@ -20,19 +20,46 @@ export default function LoginView() {
   const theme = useTheme();
   const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);
 
-  const handleClick = () => {
-    router.push('/dashboard');
+  const handleLogin = async () => {
+    setLoading(true);
+
+    const response = await fetch('http://localhost:8120/interface/authenticate', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        username: email,
+        password,
+      }),
+    });
+
+    const data = await response.json();
+    setLoading(false);
+
+    if (data.username === email && data.password === password) {
+      router.push('/');
+    } else {
+      alert('Credenciales incorrectas');
+    }
   };
 
   const renderForm = (
     <>
-      <Stack spacing={2}> {/* Ajuste de espaciado aquí */}
+      <Stack spacing={2}>
+        {' '}
+        {/* Ajuste de espaciado aquí */}
         <Typography variant="subtitle1" gutterBottom>
           Codigo UTP
         </Typography>
         <TextField
           name="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
           InputProps={{
             endAdornment: (
               <InputAdornment position="end">
@@ -41,16 +68,20 @@ export default function LoginView() {
             ),
           }}
         />
-        <Typography variant="caption" color="text.secondary" sx={{ display: 'flex', alignItems: 'center'}} >
-          <Iconify icon="material-symbols:info" /> Ejemplo de usuario: U1533148 (no digitar el @utp.edu.pe)
+        <Typography
+          variant="caption"
+          color="text.secondary"
+          sx={{ display: 'flex', alignItems: 'center' }}
+        >
+          <Iconify icon="material-symbols:info" /> Ejemplo de usuario: U1533148 (no digitar el
+          @utp.edu.pe)
         </Typography>
-
-        <Typography variant="subtitle1"> 
-          Contraseña
-        </Typography>
+        <Typography variant="subtitle1">Contraseña</Typography>
         <TextField
           name="password"
           type={showPassword ? 'text' : 'password'}
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
           InputProps={{
             endAdornment: (
               <InputAdornment position="end">
@@ -75,7 +106,8 @@ export default function LoginView() {
         type="submit"
         variant="contained"
         color="inherit"
-        onClick={handleClick}
+        loading={loading}
+        onClick={handleLogin}
       >
         Iniciar sesión
       </LoadingButton>
@@ -100,12 +132,16 @@ export default function LoginView() {
             maxWidth: 420,
           }}
         >
-          <img src="/assets/images/logo/utpOnboarding.png" alt="UTP Onboarding Logo" style={{ width: '100%', marginBottom: '30px' }} />
-          
+          <img
+            src="/assets/images/logo/utpOnboarding.png"
+            alt="UTP Onboarding Logo"
+            style={{ width: '100%', marginBottom: '30px' }}
+          />
+
           <Typography variant="body2" sx={{ mt: 2, mb: 1 }}>
             Ingresa con tu cuenta academica
           </Typography>
-          
+
           <Divider sx={{ my: 3 }} />
           {renderForm}
         </Card>
