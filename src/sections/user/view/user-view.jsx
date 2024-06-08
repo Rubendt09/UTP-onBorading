@@ -85,7 +85,7 @@ export default function UserPage() {
                 orderBy={orderBy}
                 onRequestSort={handleSort}
                 headLabel={[
-                  { id: 'names', label: 'Nombre del estudiante' },
+                  { id: 'names', label: 'Nombre del estudiante', disableSorting: true },
                   { id: 'average', label: 'Puntaje' },
                 ]}
               />
