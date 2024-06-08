@@ -4,30 +4,14 @@ import { faker } from '@faker-js/faker';
 // ----------------------------------------------------------------------
 
 const PRODUCT_NAME = [
-  'Nike Air Force 1 NDESTRUKT',
-  'Nike Space Hippie 04',
-  'Nike Air Zoom Pegasus 37 A.I.R. Chaz Bear',
-  'Nike Blazer Low 77 Vintage',
-  'Nike ZoomX SuperRep Surge',
-  'Zoom Freak 2',
-  'Nike Air Max Zephyr',
-  'Jordan Delta',
-  'Air Jordan XXXV PF',
-  'Nike Waffle Racer Crater',
-  'Kyrie 7 EP Sisterhood',
-  'Nike Air Zoom BB NXT',
-  'Nike Air Force 1 07 LX',
-  'Nike Air Force 1 Shadow SE',
-  'Nike Air Zoom Tempo NEXT%',
-  'Nike DBreak-Type',
-  'Nike Air Max Up',
-  'Nike Air Max 270 React ENG',
-  'NikeCourt Royale',
-  'Nike Air Zoom Pegasus 37 Premium',
-  'Nike Air Zoom SuperRep',
-  'NikeCourt Royale',
-  'Nike React Art3mis',
-  'Nike React Infinity Run Flyknit A.I.R. Chaz Bear',
+  'EVENTO 1',
+  'EVENTO 2',
+  'EVENTO 3',
+  'EVENTO 4',
+  'EVENTO 5',
+  'EVENTO 6',
+  'EVENTO 7',
+  'EVENTO 8',
 ];
 const PRODUCT_COLOR = [
   '#00AB55',
@@ -40,9 +24,24 @@ const PRODUCT_COLOR = [
   '#FFC107',
 ];
 
+const EVENTO_LUGAR = [
+  'Av. Arequipa 265, Lima 15046',
+  'Jr. Hernán Velarde 260',
+  'Av. Petit Thouars 383 - 385',
+  'Tacna y Arica 160, Arequipa 04001',
+  'Panamericana Norte, Av. Alfredo Mendiola 6377, Los Olivos 15306',
+  'Ctra. Panamericana S km 16, Villa EL Salvador 15842',
+  'Av. Nicolás Ayllón con, Ate 15487',
+  'Av. El Sol 235, San Juan de Lurigancho 15096',
+];
+
+const EVENTO_FECHA = [
+  '07/06/2024'
+]
+
 // ----------------------------------------------------------------------
 
-export const products = [...Array(24)].map((_, index) => {
+export const products = [...Array(8)].map((_, index) => {
   const setIndex = index + 1;
 
   return {
@@ -59,6 +58,8 @@ export const products = [...Array(24)].map((_, index) => {
       (setIndex === 23 && PRODUCT_COLOR.slice(4, 6)) ||
       (setIndex === 24 && PRODUCT_COLOR.slice(5, 6)) ||
       PRODUCT_COLOR,
+    lugar: EVENTO_LUGAR[index],
+    fecha: EVENTO_FECHA[0],
     status: sample(['sale', 'new', '', '']),
   };
 });
