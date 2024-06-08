@@ -70,16 +70,16 @@ export default function UserPage() {
   const notFound = !dataFiltered.length && !!filterName;
 
   return (
-    <Container>
+    <Container sx={{ overflowX: 'hidden', width: '100%' }}>
       <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
         <Typography variant="h4">Users</Typography>
       </Stack>
 
-      <Card>
+      <Card sx={{ width: '100%' }}>
         <UserTableToolbar filterName={filterName} onFilterName={handleFilterByName} />
         <Scrollbar>
-          <TableContainer sx={{ overflow: 'unset' }}>
-            <Table sx={{ minWidth: 800 }}>
+          <TableContainer sx={{ width: '100%' }}>
+            <Table sx={{ minWidth: 800, width: '100%', '@media (max-width: 600px)': { width: '100%', minWidth: 'auto' } }}>
               <UserTableHead
                 order={order}
                 orderBy={orderBy}
