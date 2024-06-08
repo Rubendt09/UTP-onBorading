@@ -32,7 +32,7 @@ const NOTIFICATIONS = [
     description: 'te quedan 2 horas para dar tu examen',
     avatar: null,
     type: 'order_placed',
-    createdAt: set(new Date(), { hours: 10, minutes: 30 }),
+      
     isUnRead: true,
   },
   {
