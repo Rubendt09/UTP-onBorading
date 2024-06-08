@@ -42,7 +42,7 @@ export default function LoginView() {
     setLoading(false);
 
     if (data.username === email && data.password === password) {
-      router.push('/');
+      router.push('/app');
     } else {
       alert('Credenciales incorrectas');
     }
