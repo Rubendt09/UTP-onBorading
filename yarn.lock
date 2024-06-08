@@ -1249,6 +1249,13 @@
   dependencies:
     "@babel/runtime" "^7.23.9"
 
+"@mui/icons-material@^5.15.19":
+  version "5.15.19"
+  resolved "https://registry.npmjs.org/@mui/icons-material/-/icons-material-5.15.19.tgz"
+  integrity sha512-RsEiRxA5azN9b8gI7JRqekkgvxQUlitoBOtZglflb8cUDyP12/cP4gRwhb44Ea1/zwwGGjAj66ZJpGHhKfibNA==
+  dependencies:
+    "@babel/runtime" "^7.23.9"
+
 "@mui/lab@^5.0.0-alpha.147":
   version "5.0.0-alpha.147"
   resolved "https://registry.npmjs.org/@mui/lab/-/lab-5.0.0-alpha.147.tgz"
