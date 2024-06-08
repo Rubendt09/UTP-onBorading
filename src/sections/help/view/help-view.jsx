@@ -10,11 +10,7 @@ import Button from '@mui/material/Button';
 // ----------------------------------------------------------------------
 
 export default function HelpView() {
-  const [expanded, setExpanded] = React.useState(false);
-
-  const handleChange = (panel) => (event, isExpanded) => {
-    setExpanded(isExpanded ? panel : false);
-  };
+  
 
   return (
     <Container maxWidth="100%">
@@ -22,15 +18,9 @@ export default function HelpView() {
         Preguntas frecuentes
       </Typography>
 
-      <Accordion
-        expanded={expanded === 'panel1'}
-        onChange={handleChange('panel1')}
-        sx={{ boxShadow: 3, borderRadius: 2, mt: 4, backgroundColor: '#F3F4F8' }}
-      >
+      <Accordion sx={{ boxShadow: 3, borderRadius: 2, mt: 4, backgroundColor: '#F3F4F8' }}>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
-          sx={{ backgroundColor: expanded === 'panel1' ? 'primary.main' : 'text.primary' }}
-          borderRadius={10}
         >
           <Typography variant="h6">¿Cómo accedo a la plataforma UTPClass?</Typography>
         </AccordionSummary>
@@ -66,7 +56,7 @@ export default function HelpView() {
         </AccordionDetails>
       </Accordion>
 
-      <Accordion sx={{ boxShadow: 3, borderRadius: 2, mt: 4, backgroundColor: '#FCA5B5' }}>
+      <Accordion sx={{ boxShadow: 3, borderRadius: 2, mt: 4, backgroundColor: '#F3F4F8' }}>
         <AccordionSummary expandIcon={<ExpandMoreIcon />}>
           <Typography variant="h6">
             ¿Dónde puedo encontrar información sobre las actividades extracurriculares?
@@ -80,7 +70,7 @@ export default function HelpView() {
         </AccordionDetails>
       </Accordion>
 
-      <Accordion sx={{ boxShadow: 3, borderRadius: 2, mt: 4, backgroundColor: '#FCA5B5' }}>
+      <Accordion sx={{ boxShadow: 3, borderRadius: 2, mt: 4, backgroundColor: '#F3F4F8' }}>
         <AccordionSummary expandIcon={<ExpandMoreIcon />}>
           <Typography variant="h6">
             ¿Qué hago si tengo problemas con mi cuenta institucional?
@@ -95,7 +85,7 @@ export default function HelpView() {
         </AccordionDetails>
       </Accordion>
 
-      <Accordion sx={{ boxShadow: 3, borderRadius: 2, mt: 4, backgroundColor: '#FCA5B5' }}>
+      <Accordion sx={{ boxShadow: 3, borderRadius: 2, mt: 4, backgroundColor: '#F3F4F8' }}>
         <AccordionSummary expandIcon={<ExpandMoreIcon />}>
           <Typography variant="h6">¿Cómo puedo obtener mi carné universitario?</Typography>
         </AccordionSummary>
@@ -108,7 +98,7 @@ export default function HelpView() {
         </AccordionDetails>
       </Accordion>
 
-      <Accordion sx={{ boxShadow: 3, borderRadius: 2, mt: 4, backgroundColor: '#FCA5B5' }}>
+      <Accordion sx={{ boxShadow: 3, borderRadius: 2, mt: 4, backgroundColor: '#F3F4F8' }}>
         <AccordionSummary expandIcon={<ExpandMoreIcon />}>
           <Typography variant="h6">
             ¿Qué servicios ofrece la oficina de bienestar estudiantil?
@@ -123,7 +113,7 @@ export default function HelpView() {
         </AccordionDetails>
       </Accordion>
 
-      <Accordion sx={{ boxShadow: 3, borderRadius: 2, mt: 4, backgroundColor: '#FCA5B5' }}>
+      <Accordion sx={{ boxShadow: 3, borderRadius: 2, mt: 4, backgroundColor: '#F3F4F8' }}>
         <AccordionSummary expandIcon={<ExpandMoreIcon />}>
           <Typography variant="h6">¿Cómo accedo a la red Wi-Fi del campus?</Typography>
         </AccordionSummary>
@@ -135,7 +125,7 @@ export default function HelpView() {
         </AccordionDetails>
       </Accordion>
 
-      <Accordion sx={{ boxShadow: 3, borderRadius: 2, mt: 4, backgroundColor: '#FCA5B5' }}>
+      <Accordion sx={{ boxShadow: 3, borderRadius: 2, mt: 4, backgroundColor: '#F3F4F8' }}>
         <AccordionSummary expandIcon={<ExpandMoreIcon />}>
           <Typography variant="h6">
             ¿Cuáles son los procedimientos para realizar trámites administrativos?
@@ -150,7 +140,7 @@ export default function HelpView() {
         </AccordionDetails>
       </Accordion>
 
-      <Accordion sx={{ boxShadow: 3, borderRadius: 2, mt: 4, backgroundColor: '#FCA5B5' }}>
+      <Accordion sx={{ boxShadow: 3, borderRadius: 2, mt: 4, backgroundColor: '#F3F4F8' }}>
         <AccordionSummary expandIcon={<ExpandMoreIcon />}>
           <Typography variant="h6">
             ¿Cómo puedo participar en actividades deportivas y culturales?
