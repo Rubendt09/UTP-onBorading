@@ -1,89 +1,72 @@
 import PropTypes from 'prop-types';
 
 import Box from '@mui/material/Box';
-import Link from '@mui/material/Link';
 import Card from '@mui/material/Card';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-
-import { fCurrency } from 'src/utils/format-number';
-
-import Label from 'src/components/label';
-import { ColorPreview } from 'src/components/color-utils';
+import Grid from '@mui/material/Grid';
 
 // ----------------------------------------------------------------------
 
-export default function ShopProductCard({ product }) {
-  const renderStatus = (
-    <Label
-      variant="filled"
-      color={(product.status === 'sale' && 'error') || 'info'}
-      sx={{
-        zIndex: 9,
-        top: 16,
-        right: 16,
-        position: 'absolute',
-        textTransform: 'uppercase',
-      }}
-    >
-      {product.status}
-    </Label>
-  );
-
+export default function ShopeventoCard({ evento, sx }) {
   const renderImg = (
     <Box
       component="img"
-      alt={product.name}
-      src={product.cover}
+      alt={evento.name}
+      src={evento.cover}
       sx={{
-        top: 0,
-        width: 1,
-        height: 1,
+        width: '100%',
+        height: '100%',
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
         objectFit: 'cover',
-        position: 'absolute',
+        position: 'relative',
       }}
     />
   );
 
-  const renderPrice = (
-    <Typography variant="subtitle1">
-      <Typography
-        component="span"
-        variant="body1"
-        sx={{
-          color: 'text.disabled',
-          textDecoration: 'line-through',
-        }}
-      >
-        {product.priceSale && fCurrency(product.priceSale)}
-      </Typography>
-      &nbsp;
-      {fCurrency(product.price)}
+  const renderLugar = (
+    <Typography variant="subtitle2" sx={{ fontSize: '0.8rem' }}>
+      Lugar: {evento.lugar}
+    </Typography>
+  );
+
+  const renderFecha = (
+    <Typography variant="subtitle2" sx={{ fontSize: '0.8rem' }}>
+      Fecha: {evento.fecha}
     </Typography>
   );
 
   return (
-    <Card>
-      <Box sx={{ pt: '100%', position: 'relative' }}>
-        {product.status && renderStatus}
+    <Box sx={{ width: '100%', maxWidth: 1000, ...sx }}>
+      <Card sx={{ display: 'flex', flexDirection: 'column', height: '10em' }}>
+        <Grid container sx={{ height: '100%' }}>
+          <Grid item xs={5}>
+            <Box sx={{ position: 'relative', width: '100%', height: '100%',margin:0, padding: 0 }}>
+              {renderImg}
+            </Box>
+          </Grid>
 
-        {renderImg}
-      </Box>
+          <Grid item xs={5}>
+            <Stack spacing={0} sx={{ p: 1, height: '100%' }}>
+              <Stack spacing={0} sx={{ fontWeight: 'bold', justifyContent: 'center' }}>
+                {evento.name}
+              </Stack>
 
-      <Stack spacing={2} sx={{ p: 3 }}>
-        <Link color="inherit" underline="hover" variant="subtitle2" noWrap>
-          {product.name}
-        </Link>
-
-        <Stack direction="row" alignItems="center" justifyContent="space-between">
-          <ColorPreview colors={product.colors} />
-          {renderPrice}
-        </Stack>
-      </Stack>
-    </Card>
+              <Stack spacing={0} sx={{ justifyContent: 'center', color: '#515860' }}>
+                {renderLugar}
+                {renderFecha}
+              </Stack>
+            </Stack>
+          </Grid>
+        </Grid>
+      </Card>
+    </Box>
   );
 }
 
-ShopProductCard.propTypes = {
-  product: PropTypes.object,
+ShopeventoCard.propTypes = {
+  evento: PropTypes.object.isRequired,
+  sx: PropTypes.object,
 };
