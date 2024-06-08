@@ -22,31 +22,32 @@ export default function LoginView() {
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [loading, setLoading] = useState(false);
 
-  const handleLogin = async () => {
-    setLoading(true);
+  // const handleLogin = async () => {
+  //   setLoading(true);
 
-    const response = await fetch('http://localhost:8085/api/authenticate', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        username: email,
-        password,
-      }),
-    });
+  //   const response = await fetch('http://localhost:8085/api/authenticate', {
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //     },
+  //     body: JSON.stringify({
+  //       username: email,
+  //       password,
+  //     }),
+  //   });
 
-    const data = await response.json();
-    setLoading(false);
+  //   const data = await response.json();
+  //   setLoading(false);
 
-    if (data.ok && data.message === "SUCCESS") {
-      router.push('/app');
-    } else {
-      alert('Credenciales incorrectas');
-    }
-  };
+  //   if (data.ok && data.message === "SUCCESS") {
+  //     router.push('/app');
+  //   } else {
+  //     alert('Credenciales incorrectas');
+  //   }
+  // };
+
+  router.push('/app');
 
   const renderForm = (
     <>
@@ -104,8 +105,7 @@ export default function LoginView() {
         type="submit"
         variant="contained"
         color="inherit"
-        loading={loading}
-        onClick={handleLogin}
+
       >
         Iniciar sesión
       </LoadingButton>
