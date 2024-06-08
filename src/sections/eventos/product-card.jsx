@@ -10,15 +10,13 @@ export default function ShopeventoCard({ evento, onClick, sx }) {
     <Box
       component="img"
       alt={evento.name}
-      src={evento.cover}
+      src={evento.imagenURL} // Aquí se utiliza imagenURL en lugar de imagenUrl
       sx={{
         width: '100%',
         height: '100%',
-        display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
         objectFit: 'cover',
-        position: 'relative',
       }}
     />
   );
@@ -45,11 +43,11 @@ export default function ShopeventoCard({ evento, onClick, sx }) {
             </Box>
           </Grid>
 
-          <Grid item xs={5}>
+          <Grid item xs={7}>
             <Stack spacing={0} sx={{ p: 1, height: '100%' }}>
-              <Stack spacing={0} sx={{ fontWeight: 'bold', justifyContent: 'center' }}>
+              <Typography variant="h6" sx={{ fontWeight: 'bold', justifyContent: 'center' }}>
                 {evento.name}
-              </Stack>
+              </Typography>
 
               <Stack spacing={0} sx={{ justifyContent: 'center', color: '#515860' }}>
                 {renderLugar}
