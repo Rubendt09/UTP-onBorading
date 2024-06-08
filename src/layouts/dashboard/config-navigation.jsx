@@ -29,7 +29,7 @@ const navConfig = [
   },
   {
     title: 'Help',
-    path: '/products',
+    path: '/help',
     icon: icon('help'),
   },
 
