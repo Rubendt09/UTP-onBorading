@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import Box from '@mui/material/Box';
 import Link from '@mui/material/Link';
 import Card from '@mui/material/Card';
@@ -23,9 +23,11 @@ export default function LoginView() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
+  const [emailError, setEmailError] = useState(false);
+  const [passError, setPassError] = useState(false);
 
   const handleLogin = async () => {
-    setLoading(true);
+       setLoading(true);
 
     const response = await fetch('http://localhost:8085/api/authenticate', {
       method: 'POST',
@@ -48,6 +50,29 @@ export default function LoginView() {
     }
   };
 
+  const handleEmailChange = (e) => {
+    const { value } = e.target;
+    const regex = /^[A-Za-z0-9]*$/;
+    if (regex.test(value)) {
+      setEmail(value);
+      setEmailError(false);
+    } else {
+      setEmailError(true);
+    }
+  };
+
+  const handlePassChange = (e) => {
+    const { value } = e.target;
+    const regex = /^[A-Za-z0-9]*$/;
+    if (regex.test(value)) {
+      setPassword(value);
+      setPassError(false);
+    } else {
+      setPassError(true);
+    }
+  };
+  
+
   const renderForm = (
     <>
       <Stack spacing={2}>
@@ -57,13 +82,26 @@ export default function LoginView() {
         <TextField
           name="email"
           value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          onChange={handleEmailChange}
           InputProps={{
             endAdornment: (
               <InputAdornment position="end">
                 <Iconify icon="ph:student" />
               </InputAdornment>
             ),
+          }}
+          sx={{
+            '& .MuiOutlinedInput-root': {
+              '& fieldset': {
+                borderColor: emailError ? 'red' : '#DFE2E7',
+              },
+              '&:hover fieldset': {
+                borderColor: emailError ? 'red' : 'black',
+              },
+              '&.Mui-focused fieldset': {
+                borderColor: emailError ? 'red' : 'black',
+              },
+            },
           }}
         />
         <Typography
@@ -79,7 +117,7 @@ export default function LoginView() {
           name="password"
           type={showPassword ? 'text' : 'password'}
           value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          onChange={handlePassChange}
           InputProps={{
             endAdornment: (
               <InputAdornment position="end">
@@ -88,6 +126,20 @@ export default function LoginView() {
                 </IconButton>
               </InputAdornment>
             ),
+          }}
+          
+          sx={{
+            '& .MuiOutlinedInput-root': {
+              '& fieldset': {
+                borderColor: passError ? 'red' : '#DFE2E7',
+              },
+              '&:hover fieldset': {
+                borderColor: passError ? 'red' : 'black',
+              },
+              '&.Mui-focused fieldset': {
+                borderColor: passError ? 'red' : 'black',
+              },
+            },
           }}
         />
       </Stack>
