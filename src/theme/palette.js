@@ -52,19 +52,19 @@ export const secondary = {
 export const info = {
   lighter: '#CAFDF5',
   light: '#61F3F3',
-  main: '#00B8D9',
+  main: '#BEC5CC',
   dark: '#006C9C',
   darker: '#003768',
-  contrastText: '#FFFFFF',
+  contrastText: '#4A4F55',
 };
 
 export const success = {
   lighter: '#C8FAD6',
   light: '#5BE49B',
-  main: '#00A76F',
+  main: '#A8F1BB',
   dark: '#007867',
   darker: '#004B50',
-  contrastText: '#FFFFFF',
+  contrastText: '#005C27',
 };
 
 export const warning = {
