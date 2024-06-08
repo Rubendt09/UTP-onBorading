@@ -45,7 +45,6 @@ export default function LoginView() {
       router.push('/app');
     } else {
       alert('Credenciales incorrectas');
-      
     }
   };
 
