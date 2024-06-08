@@ -33,7 +33,6 @@ const navConfig = [
     icon: icon('help'),
   },
 
-
   {/*
     title: 'Products',
     path: '/products',
@@ -44,11 +43,13 @@ const navConfig = [
     path: '/blog',
     icon: icon('ic_blog'),
   */},
+
   {
     title: 'Cerrar Sesion',
     path: '/login',
     icon: icon('ic_lock'),
   },
+  
   {/*
     title: 'Not found',
     path: '/404',
