@@ -49,12 +49,12 @@ export default function ShopeventoCard({ evento, sx }) {
           </Grid>
 
           <Grid item xs={5}>
-            <Stack spacing={0} sx={{ p: 1, height: '100%' }}>
-              <Stack spacing={0} sx={{ fontWeight: 'bold', justifyContent: 'center' }}>
+            <Stack spacing={0} sx={{ p: 1, height: '100%', alignItems:'center' }}>
+              <Stack spacing={0} sx={{ fontWeight: 'bold', justifyContent: 'center', ml:'6px' }}>
                 {evento.name}
               </Stack>
 
-              <Stack spacing={0} sx={{ justifyContent: 'center', color: '#515860' }}>
+              <Stack spacing={0} sx={{ justifyContent: 'center', color: '#515860', ml:'12px' }}>
                 {renderLugar}
                 {renderFecha}
               </Stack>
