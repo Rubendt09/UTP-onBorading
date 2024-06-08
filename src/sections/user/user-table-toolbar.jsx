@@ -8,7 +8,6 @@ import Iconify from 'src/components/iconify';
 
 // ----------------------------------------------------------------------
 
-// Estilo personalizado para la barra de búsqueda
 const SearchStyle = styled(OutlinedInput)(({ theme }) => ({
   width: '100%',
   transition: theme.transitions.create(['box-shadow', 'width'], {
