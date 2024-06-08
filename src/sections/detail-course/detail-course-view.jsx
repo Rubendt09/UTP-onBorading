@@ -1,6 +1,7 @@
 import * as React from 'react';
-import { Box, Grid, Card ,Button,Rating,Typography} from '@mui/material';
+import { Box,Link, Grid, Card ,Button,Rating,Typography} from '@mui/material';
 import Container from '@mui/material/Container';
+import { RouterLink } from 'src/routes/components';
 
 
 
@@ -69,32 +70,34 @@ export default function DetailCourseView() {
           />
         </Box>
 
-        <Grid item xs={12} container direction="row" justifyContent="space-between" alignItems="center"  sx={{ m:  5}} >
-          <Grid item>
+        <Grid 
+        item 
+        container 
+        direction="column" 
+        justifyContent="center"  
+        alignItems="center"  
+        xs={12}
+        
+        >
+        <Grid item container 
+        direction="column" 
+        justifyContent="center"  
+        alignItems="center"
+        sx={{ mb:  3}} >
           <Typography component="legend">Valora este contenido</Typography>
-              <Rating
-                name="simple-controlled"
-                value={value}
-                onChange={(event, newValue) => {
-                  setValue(newValue);
-                }}
-              />
-          </Grid>
-          <Grid item>
-            <Button
-              variant="contained"
-              color="primary"
-              sx={{ textTransform: 'none' }}
-            >
-              Ver mi horario
-            </Button>
-          </Grid>
+          <Rating name="simple-controlled" value={value} onChange={(event, newValue) => { setValue(newValue); }} />
         </Grid>
-
+        <Grid item>
+        <Link component={RouterLink} href="/courses/utp+class/evaluacion" sx={{ display: 'contents' }}>
+          <Button variant="contained" color="primary" sx={{ textTransform: 'none' }} >
+            Demuestra lo aprendido
+          </Button>
+        </Link>
+          
+        </Grid>
+      </Grid>
       </Card>
-      
     </Container>
-    
 
     
   );
