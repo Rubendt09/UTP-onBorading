@@ -27,7 +27,7 @@ export default function LoginView() {
   const handleLogin = async () => {
     setLoading(true);
 
-    const response = await fetch('http://localhost:8120/interface/authenticate', {
+    const response = await fetch('http://localhost:8085/api/authenticate', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -41,7 +41,7 @@ export default function LoginView() {
     const data = await response.json();
     setLoading(false);
 
-    if (data.username === email && data.password === password) {
+    if (data.ok && data.message === "SUCCESS") {
       router.push('/app');
     } else {
       alert('Credenciales incorrectas');
@@ -51,8 +51,6 @@ export default function LoginView() {
   const renderForm = (
     <>
       <Stack spacing={2}>
-        {' '}
-        {/* Ajuste de espaciado aquí */}
         <Typography variant="subtitle1" gutterBottom>
           Codigo UTP
         </Typography>
