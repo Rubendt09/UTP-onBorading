@@ -22,7 +22,7 @@ import { emptyRows, applyFilter, getComparator } from '../utils';
 
 // ----------------------------------------------------------------------
 
-// const [rowsPerPage, setRowsPerPage] = useState(10);
+// const [rowsPerPage, setRowsPerPage] =  useState(10);
 
 export default function UserPage() {
   const [page, setPage] = useState(0);
