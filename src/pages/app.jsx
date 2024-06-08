@@ -1,6 +1,6 @@
 import { Helmet } from 'react-helmet-async';
 
-import { PruebaView } from 'src/sections/overview/view';
+import { HelpView } from 'src/sections/help/view';
 
 // ----------------------------------------------------------------------
 
@@ -11,7 +11,7 @@ export default function PruebaPage() {
         <title> Prueba | UTP+onBoarding </title>
       </Helmet>
 
-      <PruebaView />
+      <HelpView />
     </>
   );
 }
