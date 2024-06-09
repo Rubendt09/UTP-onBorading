@@ -7,25 +7,59 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 
-
-
-
-
-
-
 // ----------------------------------------------------------------------
 const questions = [
-  { id: 1, text: '¿Cuál es el objetivo principal de la plataforma UTP+class?', options: ['Ofrecer un lugar para el entretenimiento de los estudiantes', 'Facilitar la gestión de documentos financieros', 'Mejorar la experiencia educativa de los estudiantes', 'No proporcionar servicios de mensajería'] },
-  { id: 2, text: '¿Qué funcionalidad destaca los videos sobre UTP+class?', 
-    options: ['Transmisión de video en vivo', 'Acceso a materiales de estudio y tareas', 'Plataforma para comprar libros', 'Red social para estudiantes'] },
-  { id: 3, text: '¿Cómo pueden los estudiantes acceder a sus cursos en UTP+class?', 
-    options: ['Transmisión de video en vivo', 'Iniciando sesión en la plataforma con sus credenciales', 'Descargando una aplicación de terceros', 'Pidiendo acceso directo al profesor'] },
-  { id: 4, text: '¿Qué recurso importante menciona el video que está disponible para los estudiantes en UTP+class?', 
-    options: ['Juegos interactivos', 'Materiales complementarios y evaluaciones', 'Noticias sobre deportes', 'Música y podcasts'] },
-  { id: 5, text: '¿Cómo se asegura UTP+class de que los estudiantes completen sus tareas?', 
-    options: ['Enviando recordatorios diarios por mensaje de texto', 'Utilizando un sistema de notificaciones y seguimiento de progreso', 'Llamando a los padres de los estudiantes', 'Ofreciendo recompensas monetarias'] },
+  {
+    id: 1,
+    text: '¿Cuál es el objetivo principal de la plataforma UTP+class?',
+    options: [
+      'Ofrecer un lugar para el entretenimiento de los estudiantes',
+      'Facilitar la gestión de documentos financieros',
+      'Mejorar la experiencia educativa de los estudiantes',
+      'No proporcionar servicios de mensajería',
+    ],
+  },
+  {
+    id: 2,
+    text: '¿Qué funcionalidad destaca los videos sobre UTP+class?',
+    options: [
+      'Transmisión de video en vivo',
+      'Acceso a materiales de estudio y tareas',
+      'Plataforma para comprar libros',
+      'Red social para estudiantes',
+    ],
+  },
+  {
+    id: 3,
+    text: '¿Cómo pueden los estudiantes acceder a sus cursos en UTP+class?',
+    options: [
+      'Transmisión de video en vivo',
+      'Iniciando sesión en la plataforma con sus credenciales',
+      'Descargando una aplicación de terceros',
+      'Pidiendo acceso directo al profesor',
+    ],
+  },
+  {
+    id: 4,
+    text: '¿Qué recurso importante menciona el video que está disponible para los estudiantes en UTP+class?',
+    options: [
+      'Juegos interactivos',
+      'Materiales complementarios y evaluaciones',
+      'Noticias sobre deportes',
+      'Música y podcasts',
+    ],
+  },
+  {
+    id: 5,
+    text: '¿Cómo se asegura UTP+class de que los estudiantes completen sus tareas?',
+    options: [
+      'Enviando recordatorios diarios por mensaje de texto',
+      'Utilizando un sistema de notificaciones y seguimiento de progreso',
+      'Llamando a los padres de los estudiantes',
+      'Ofreciendo recompensas monetarias',
+    ],
+  },
 ];
-
 
 export default function DetailCourseView() {
   const [answers, setAnswers] = useState({});
@@ -40,10 +74,9 @@ export default function DetailCourseView() {
   };
 
   return (
-    
     <Container>
-      <Typography variant="h4" sx={{ mb:  5}}>
-        Evalua tus conocimientos  -  UTP+class
+      <Typography variant="h4" sx={{ mb: 5 }}>
+        Evalua tus conocimientos - UTP+class
       </Typography>
       <Card sx={{ p: 2, boxShadow: 3, borderRadius: 2 }}>
         {questions.map((question, index) => (
@@ -65,7 +98,13 @@ export default function DetailCourseView() {
                   sx={{ ml: 5, mt: 3 }}
                 >
                   {question.options.map((option, optionIndex) => (
-                    <FormControlLabel key={optionIndex} value={option} control={<Radio />} label={option} sx={{ mt: 1 }} />
+                    <FormControlLabel
+                      key={optionIndex}
+                      value={option}
+                      control={<Radio />}
+                      label={option}
+                      sx={{ mt: 1 }}
+                    />
                   ))}
                 </RadioGroup>
               </FormControl>
@@ -73,11 +112,9 @@ export default function DetailCourseView() {
           </Card>
         ))}
         <Button variant="contained" color="primary" onClick={handleSubmit}>
-        Enviar Examen
+          Enviar Examen
         </Button>
       </Card>
     </Container>
-
-    
   );
 }

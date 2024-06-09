@@ -14,8 +14,6 @@ import { useRouter } from 'src/routes/hooks';
 import { bgGradient } from 'src/theme/css';
 import Iconify from 'src/components/iconify';
 
-// ----------------------------------------------------------------------
-
 export default function LoginView() {
   const theme = useTheme();
   const router = useRouter();
@@ -27,7 +25,7 @@ export default function LoginView() {
   const [passError, setPassError] = useState(false);
 
   const handleLogin = async () => {
-       setLoading(true);
+    setLoading(true);
 
     const response = await fetch('http://localhost:8085/api/authenticate', {
       method: 'POST',
@@ -44,6 +42,7 @@ export default function LoginView() {
     setLoading(false);
 
     if (data.ok && data.message === "SUCCESS") {
+      localStorage.setItem('userData', JSON.stringify(data));
       router.push('/app');
     } else {
       alert('Credenciales incorrectas');
@@ -145,7 +144,7 @@ export default function LoginView() {
       </Stack>
 
       <Stack direction="row" alignItems="center" justifyContent="flex-end" sx={{ my: 2 }}>
-        <Link variant="subtitle2" underline="hover">
+        <Link variant="subtitle2" underline="hover" href="https://contrasena.utp.edu.pe/Recuperacion/OlvideMiClave.aspx" >
           ¿Olvidaste tu contraseña?
         </Link>
       </Stack>
