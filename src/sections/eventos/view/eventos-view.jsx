@@ -63,14 +63,65 @@ export default function EventossView() {
         </Grid>
       )}
 
-      <Modal open={!!selectedEvent} onClose={handleClose}>
-        <Box>
-          {/* Aquí puedes renderizar la información del evento seleccionado */}
+      <Modal 
+        open={!!selectedEvent} 
+        onClose={handleClose}
+        BackdropProps={{
+          style: {
+            backgroundColor: 'rgba(0, 15, 55, 0.8)',
+          },
+        }}
+      >
+        <Box
+          sx={{
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            bgcolor: 'background.paper',
+            boxShadow: 24,
+            minHeight: 550,
+            p: 4,
+            width: {
+              xs: '90%',
+              sm: 400,
+            },
+            borderRadius: 1,
+          }}
+        >
           {selectedEvent && (
             <div>
-              <h2>{selectedEvent.name}</h2>
-              <p>{selectedEvent.lugar}</p>
-              <img src={selectedEvent.imagenURL} alt={selectedEvent.name} />
+              <img 
+                src={selectedEvent.imagenURL} 
+                alt={selectedEvent.name} 
+                style={{ 
+                  width: '100%', 
+                  height: 'auto',
+                  objectFit: 'cover', 
+                  marginBottom: 20
+                }}
+              />
+              <Typography variant="body2" color="textSecondary" fontSize={12} sx={{ mb: 0 }}>
+                Conferencia
+              </Typography>
+              <Typography variant="h6" fontSize={16} sx={{ mb: 1 }}>
+                {selectedEvent.name}:
+              </Typography>
+              <Typography variant="body2" fontSize={13}  color="textSecondary" sx={{ mb: 0 }}>
+                {selectedEvent.fecha}, de 11:00 a 12:00
+              </Typography>
+              <Typography variant="body2" fontSize={13}  color="textSecondary" sx={{ mb: 1 }}>
+                Ponente: Roberto Benitez
+              </Typography>
+              <Typography variant="h6" sx={{ mb: 1 }}>
+                Descripción
+              </Typography>
+              <Typography variant="body2" sx={{ mb: 2 }}>
+                En este evento se tratarán diversos temas como xx
+              </Typography>
+              <Typography variant="body2" fontSize={13} color="textSecondary">
+                Organizado por: OnboardingUTP
+              </Typography>
             </div>
           )}
         </Box>
