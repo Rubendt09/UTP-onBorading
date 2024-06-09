@@ -1,24 +1,27 @@
 import PropTypes from 'prop-types';
-
 import Box from '@mui/material/Box';
 import Link from '@mui/material/Link';
 import Card from '@mui/material/Card';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
-
 import { RouterLink } from 'src/routes/components';
-
 import Label from 'src/components/label';
-
 
 // ----------------------------------------------------------------------
 
 export default function ShopCourseCard({ course }) {
+  const getStatusColor = (score) => {
+    if (score >= 60) return 'success';
+    if (score < 60) return 'error';
+    return 'info';
+  };
+
   const renderStatus = (
     <Label
       variant="filled"
-      color={(course.status === 'Completado' && 'success') || 'info'}>
-      {course.status}
+      color={getStatusColor(course.testScore)}
+    >
+      {course.testScore !== null ? `Nota: ${course.testScore}` : 'Por completar'}
     </Label>
   );
 
@@ -39,47 +42,44 @@ export default function ShopCourseCard({ course }) {
 
   const renderImgTutor = (
     <img
-        src="https://class.utp.edu.pe/static/media/teacher.2bee17b1.svg"
-        alt="Tutor Curso Introducción"
-        style={{
-          width: '32px',
-          height: '32px',
-          borderRadius: '50%',
-          objectFit: 'cover',
-        }}
+      src="https://class.utp.edu.pe/static/media/teacher.2bee17b1.svg"
+      alt="Tutor Curso Introducción"
+      style={{
+        width: '32px',
+        height: '32px',
+        borderRadius: '50%',
+        objectFit: 'cover',
+      }}
     />
   );
-
 
   return (
     <Link component={RouterLink} href={`/courses/${course.links}`} sx={{ display: 'contents' }} >
       <Card>
-      <Box sx={{ pt: '35%', position: 'relative' }}>
-        {renderImg}
-      </Box>
+        <Box sx={{ pt: '35%', position: 'relative' }}>
+          {renderImg}
+        </Box>
 
-      <Stack spacing={2} sx={{ p: 3 }}>
-        <Typography color="inherit" underline="hover" variant="subtitle2">
-          {course.name}
-        </Typography>
+        <Stack spacing={2} sx={{ p: 3 }}>
+          <Typography color="inherit" underline="hover" variant="subtitle2">
+            {course.name}
+          </Typography>
 
-
-        <Stack direction="row" alignItems="center" justifyContent="space-between">
-          <Stack direction="row" alignItems="center" gap={1}>
-            {renderImgTutor}
-            <Typography color="inherit"  fontSize={12} >
-              Tutor Curso Introducción
-            </Typography>
+          <Stack direction="row" alignItems="center" justifyContent="space-between">
+            <Stack direction="row" alignItems="center" gap={1}>
+              {renderImgTutor}
+              <Typography color="inherit" fontSize={12}>
+                Tutor Curso Introducción
+              </Typography>
+            </Stack>
+            {renderStatus}
           </Stack>
-          {course.status && renderStatus}
         </Stack>
-      </Stack>
-    </Card>       
+      </Card>
     </Link>
-    
   );
 }
 
 ShopCourseCard.propTypes = {
-  course: PropTypes.object,
+  course: PropTypes.object.isRequired,
 };

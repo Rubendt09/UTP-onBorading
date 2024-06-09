@@ -7,7 +7,7 @@ const COURSE_NAME = [
   'Conoce UTP+class',
   'Conoce UTP+portal',
   'Conoce UTP+app',
-  'Conoce UTP+info',
+  // 'Conoce UTP+info',
   'Conoce UTP+biblio',
 ];
 
@@ -15,7 +15,7 @@ const COURSE_NAME_LINKS = [
   'utp+class',
   'utp+portal',
   'utp+app',
-  'utp+info',
+  // 'utp+info',
   'utp+biblio',
 ];
 
@@ -25,7 +25,7 @@ const COURSE_COLOR = [
 
 // ----------------------------------------------------------------------
 
-export const courses = [...Array(5)].map((_, index) => {
+export const courses = [...Array(4)].map((_, index) => {
   const setIndex = index + 1;
 
   return {
@@ -35,6 +35,7 @@ export const courses = [...Array(5)].map((_, index) => {
     links: COURSE_NAME_LINKS[index],
     price: "18/20",
     colors: COURSE_COLOR,
-    status: sample(['En progreso', 'Completado']),
+    status: sample(['Por completar', 'Completado']),
+    testScore: null,
   };
 });
