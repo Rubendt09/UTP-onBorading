@@ -7,25 +7,59 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 
-
-
-
-
-
-
 // ----------------------------------------------------------------------
 const questions = [
-  { id: 1, text: '¿Cuál es la función principal de la plataforma UTP+class mencionada en el video?', options: ['Gestionar pagos de matrícula', 'Facilitar la gestión de documentos financieros', 'Mejorar la experiencia educativa de los estudiantes', 'No proporcionar servicios de mensajería'] },
-  { id: 2, text: '¿Qué funcionalidad destaca los videos sobre UTP+class?', 
-    options: ['Transmisión de video en vivo', 'Acceso a materiales de estudio y tareas', 'Plataforma para comprar libros', 'Red social para estudiantes'] },
-  { id: 3, text: '¿Cómo pueden los estudiantes acceder a sus cursos en UTP+class?', 
-    options: ['Transmisión de video en vivo', 'Iniciando sesión en la plataforma con sus credenciales', 'Descargando una aplicación de terceros', 'Pidiendo acceso directo al profesor'] },
-  { id: 4, text: '¿Qué recurso importante menciona el video que está disponible para los estudiantes en UTP+class?', 
-    options: ['Juegos interactivos', 'Materiales complementarios y evaluaciones', 'Noticias sobre deportes', 'Música y podcasts'] },
-  { id: 5, text: '¿Cómo se asegura UTP+class de que los estudiantes completen sus tareas?', 
-    options: ['Enviando recordatorios diarios por mensaje de texto', 'Utilizando un sistema de notificaciones y seguimiento de progreso', 'Llamando a los padres de los estudiantes', 'Ofreciendo recompensas monetarias'] },
+  {
+    id: 1,
+    text: '¿Cuál es el objetivo principal de la UTP+app mencionado en el video?',
+    options: [
+      'Proveer servicios de entretenimiento',
+      'Facilitar el acceso a información académica',
+      'Organizar eventos sociales',
+      'Ofrecer cursos extracurriculares',
+    ],
+  },
+  {
+    id: 2,
+    text: '¿Cómo pueden los estudiantes acceder a sus cursos en UTP+app?',
+    options: [
+      'Enviando un correo al administrador',
+      'Iniciando sesión en la app con sus credenciales',
+      'Llamando a la oficina académica',
+      'Descargando una aplicación móvil adicional',
+    ],
+  },
+  {
+    id: 3,
+    text: '¿Qué tipo de materiales pueden encontrar los estudiantes en UTP+app?',
+    options: [
+      'Documentos de texto y libros de la biblioteca',
+      'Artículos de noticias',
+      'Resultados deportivos',
+      'Videos musicales',
+    ],
+  },
+  {
+    id: 4,
+    text: '¿Cómo se notifican las nuevas tareas a los estudiantes en UTP+app?',
+    options: [
+      'A través de anuncios en el campus',
+      'Mediante notificaciones en la app',
+      'Enviando cartas a sus casas',
+      'Usando redes sociales',
+    ],
+  },
+  {
+    id: 5,
+    text: '¿Qué recurso adicional menciona el video que está disponible para los estudiantes en UTP+app?',
+    options: [
+      'Juegos interactivos',
+      'Biblioteca digital',
+      'Tienda de libros',
+      'Plataforma de redes sociales',
+    ],
+  },
 ];
-
 
 export default function DetailCourseView() {
   const [answers, setAnswers] = useState({});
@@ -40,10 +74,9 @@ export default function DetailCourseView() {
   };
 
   return (
-    
     <Container>
-      <Typography variant="h4" sx={{ mb:  5}}>
-        Evalua tus conocimientos  -  UTP+app
+      <Typography variant="h4" sx={{ mb: 5 }}>
+        Evalua tus conocimientos - UTP+app
       </Typography>
       <Card sx={{ p: 2, boxShadow: 3, borderRadius: 2 }}>
         {questions.map((question, index) => (
@@ -51,7 +84,9 @@ export default function DetailCourseView() {
             <Grid sx={{ p: 2 }}>
               <FormControl component="fieldset" fullWidth>
                 <FormLabel id={`radio-buttons-group-label-${question.id}`}>
-                  <Card sx={{ p: 2, mb: 2, boxShadow: 2, borderRadius: 1, backgroundColor: '#CBDFFF'}}>
+                  <Card
+                    sx={{ p: 2, mb: 2, boxShadow: 2, borderRadius: 1, backgroundColor: '#CBDFFF' }}
+                  >
                     <Typography variant="h6">
                       {index + 1}. {question.text}
                     </Typography>
@@ -81,11 +116,9 @@ export default function DetailCourseView() {
           </Card>
         ))}
         <Button variant="contained" color="primary" onClick={handleSubmit}>
-        Enviar Examen
+          Enviar Examen
         </Button>
       </Card>
     </Container>
-
-    
   );
 }
