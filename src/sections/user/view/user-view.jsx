@@ -17,8 +17,8 @@ import { emptyRows, applyFilter, getComparator } from '../utils';
 
 export default function UserPage() {
   const [page, setPage] = useState(0);
-  const [order, setOrder] = useState('asc');
-  const [orderBy, setOrderBy] = useState('names');
+  const [order, setOrder] = useState('desc'); // Set initial order to 'desc'
+  const [orderBy, setOrderBy] = useState('average'); // Set initial orderBy to 'average'
   const [filterName, setFilterName] = useState('');
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [usersData, setUsersData] = useState([]);
@@ -86,7 +86,7 @@ export default function UserPage() {
                 onRequestSort={handleSort}
                 headLabel={[
                   { id: 'names', label: 'Nombre del estudiante', disableSorting: true },
-                  { id: 'average', label: 'Puntaje' },
+                  { id: 'average', label: 'Puntaje'},
                 ]}
               />
               <TableBody>
