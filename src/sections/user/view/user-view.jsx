@@ -72,21 +72,27 @@ export default function UserPage() {
   return (
     <Container sx={{ overflowX: 'hidden', width: '100%' }}>
       <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
-        <Typography variant="h4">Users</Typography>
+        <Typography variant="h4">Ranking</Typography>
       </Stack>
 
       <Card sx={{ width: '100%' }}>
         <UserTableToolbar filterName={filterName} onFilterName={handleFilterByName} />
         <Scrollbar>
           <TableContainer sx={{ width: '100%' }}>
-            <Table sx={{ minWidth: 800, width: '100%', '@media (max-width: 600px)': { width: '100%', minWidth: 'auto' } }}>
+            <Table
+              sx={{
+                minWidth: 800,
+                width: '100%',
+                '@media (max-width: 600px)': { width: '100%', minWidth: 'auto' },
+              }}
+            >
               <UserTableHead
                 order={order}
                 orderBy={orderBy}
                 onRequestSort={handleSort}
                 headLabel={[
                   { id: 'names', label: 'Nombre del estudiante', disableSorting: true },
-                  { id: 'average', label: 'Puntaje'},
+                  { id: 'average', label: 'Puntaje' },
                 ]}
               />
               <TableBody>
