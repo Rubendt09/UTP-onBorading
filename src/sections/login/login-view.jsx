@@ -23,23 +23,25 @@ export default function LoginView() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
+  const [emailError, setEmailError] = useState(false);
+  const [passError, setPassError] = useState(false);
 
   const handleLogin = async () => {
-    setLoading(true);
+       setLoading(true);
 
-  //   const response = await fetch('http://localhost:8085/api/authenticate', {
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //     },
-  //     body: JSON.stringify({
-  //       username: email,
-  //       password,
-  //     }),
-  //   });
+    const response = await fetch('http://localhost:8085/api/authenticate', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        username: email,
+        password,
+      }),
+    });
 
-  //   const data = await response.json();
-  //   setLoading(false);
+    const data = await response.json();
+    setLoading(false);
 
     if (data.ok && data.message === "SUCCESS") {
       router.push('/app');
@@ -47,6 +49,29 @@ export default function LoginView() {
       alert('Credenciales incorrectas');
     }
   };
+
+  const handleEmailChange = (e) => {
+    const { value } = e.target;
+    const regex = /^[A-Za-z0-9]*$/;
+    if (regex.test(value)) {
+      setEmail(value);
+      setEmailError(false);
+    } else {
+      setEmailError(true);
+    }
+  };
+
+  const handlePassChange = (e) => {
+    const { value } = e.target;
+    const regex = /^[A-Za-z0-9]*$/;
+    if (regex.test(value)) {
+      setPassword(value);
+      setPassError(false);
+    } else {
+      setPassError(true);
+    }
+  };
+  
 
   const renderForm = (
     <>
@@ -131,7 +156,8 @@ export default function LoginView() {
         type="submit"
         variant="contained"
         color="inherit"
-
+        loading={loading}
+        onClick={handleLogin}
       >
         Iniciar sesión
       </LoadingButton>
