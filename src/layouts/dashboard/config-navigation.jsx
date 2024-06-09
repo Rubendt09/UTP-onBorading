@@ -28,7 +28,7 @@ const navConfig = [
     icon: icon('courses'),
   },
   {
-    title: 'Help',
+    title: 'Ayuda',
     path: '/help',
     icon: icon('help'),
   },
