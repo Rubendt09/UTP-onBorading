@@ -8,6 +8,7 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { RouterLink } from 'src/routes/components';
 import Label from 'src/components/label';
+import FeedbackOutlinedIcon from '@mui/icons-material/FeedbackOutlined';
 
 // ----------------------------------------------------------------------
 
@@ -58,7 +59,9 @@ export default function ShopCourseCard({ course }) {
   const handleClick = (event) => {
     if (course.testScore > 0) {
       event.preventDefault();
-      toast.warn("El examen ya fue completado.");
+      toast.warn("El examen ya fue completado.", {
+        icon: <FeedbackOutlinedIcon />
+      });
     }
   };
 
