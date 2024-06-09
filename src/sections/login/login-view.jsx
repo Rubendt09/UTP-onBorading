@@ -44,6 +44,7 @@ export default function LoginView() {
     setLoading(false);
 
     if (data.ok && data.message === 'SUCCESS') {
+      localStorage.setItem('userData', JSON.stringify(data.body)); // Guardar los datos en localStorage
       router.push('/app');
     } else {
       alert('Credenciales incorrectas');

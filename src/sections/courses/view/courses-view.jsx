@@ -13,8 +13,8 @@ export default function CoursesView() {
 
   useEffect(() => {
     const storedUserData = JSON.parse(localStorage.getItem('userData'));
-    if (storedUserData && storedUserData.body && storedUserData.body.username) {
-      setUsername(storedUserData.body.username);
+    if (storedUserData && storedUserData.username) {
+      setUsername(storedUserData.username);
     } else {
       console.error('No username found in localStorage');
     }
