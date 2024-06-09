@@ -51,81 +51,75 @@ export default function AppView() {
         </Box>
       </Card>
 
-      <Card sx={{ p: 2, boxShadow: 3, borderRadius: 2, mt: 4, backgroundColor: '#f0f4fa' }}>
-        <Grid container alignItems="center" spacing={1}>
-          <Grid item xs={2} container direction="column" alignItems="center">
-            <Avatar sx={{ backgroundColor: '#e0e7ff', color: '#5c6bc0' }}>
-              <PushPinOutlinedIcon />
-            </Avatar>
-          </Grid>
-          <Grid item xs={10}>
-            <Typography variant="h6" color="text.secondary" sx={{ mb: 1 }}>
+      <Grid container alignItems="center" spacing={1} p={2} mt={2}>
+        <Grid item>
+          <Avatar sx={{ backgroundColor: '#B2C3FF' }}>
+            <PushPinOutlinedIcon />
+          </Avatar>
+        </Grid>
+        <Grid item>
+          <Box sx={{ display: 'flex', alignItems: 'center' }}>
+            <Typography variant="h6" color="text.secondary" sx={{ mr: 1 }}>
               Estas inscrito en:
             </Typography>
             <Typography variant="h5">Modalidad semipresencial - 50% virtual</Typography>
-          </Grid>
+          </Box>
         </Grid>
-      </Card>
+      </Grid>
 
       {/** Contenido de apps */}
+      <Grid container spacing={2} sx={{ mt: 1 }}>
+        <Grid item xs={12} md={4}>
+          <Card
+            sx={{
+              width: '100%',
+              height: '220px',
+              boxShadow: 3,
+              borderRadius: 2,
+              backgroundImage: 'url(/assets/references/utpclass.png)',
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+            }}
+            onClick={() => {
+              window.location.href = 'https://class.utp.edu.pe/';
+            }}
+          />
+        </Grid>
 
-      <Box
-        sx={{
-          display: 'flex',
-          flexDirection: { xs: 'column', md: 'row' }, 
-          alignItems: 'center',
-          justifyContent: 'center',
-          mt: 4,
-          flexWrap: 'wrap',
-          gap: 4, 
-        }}
-      >
-        <Card
-          sx={{
-            width: '400px',
-            height: '220px',
-            boxShadow: 3,
-            borderRadius: 2,
-            backgroundImage: 'url(/assets/references/utpclass.png)',
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-          }}
-          onClick={() => {
-            window.location.href = 'https://class.utp.edu.pe/';
-          }}
-        />
+        <Grid item xs={12} md={4}>
+          <Card
+            sx={{
+              width: '100%',
+              height: '220px',
+              boxShadow: 3,
+              borderRadius: 2,
+              backgroundImage: 'url(/assets/references/utpportal.png)',
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+            }}
+            onClick={() => {
+              window.location.href = 'https://portal.utp.edu.pe/';
+            }}
+          />
+        </Grid>
 
-        <Card
-          sx={{
-            width: '400px',
-            height: '220px',
-            boxShadow: 3,
-            borderRadius: 2,
-            backgroundImage: 'url(/assets/references/utpportal.png)',
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-          }}
-          onClick={() => {
-            window.location.href = 'https://portal.utp.edu.pe/';
-          }}
-        />
-
-        <Card
-          sx={{
-            width: '400px',
-            height: '220px',
-            boxShadow: 3,
-            borderRadius: 2,
-            backgroundImage: 'url(/assets/references/utpinfo.png)',
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-          }}
-          onClick={() => {
-            window.location.href = 'https://info.utp.edu.pe/';
-          }}
-        />
-      </Box>
-      
+        <Grid item xs={12} md={4}>
+          <Card
+            sx={{
+              width: '100%',
+              height: '220px',
+              boxShadow: 3,
+              borderRadius: 2,
+              backgroundImage: 'url(/assets/references/utpinfo.png)',
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+            }}
+            onClick={() => {
+              window.location.href = 'https://info.utp.edu.pe/';
+            }}
+          />
+        </Grid>
+      </Grid>
     </Container>
   );
 }
