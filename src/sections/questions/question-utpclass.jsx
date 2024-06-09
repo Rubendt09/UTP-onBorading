@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Grid, Button, Container, Typography } from '@mui/material';
+import { useRouter } from 'src/routes/hooks';
 import Card from '@mui/material/Card';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
@@ -18,6 +19,7 @@ const questions = [
       'Mejorar la experiencia educativa de los estudiantes',
       'No proporcionar servicios de mensajería',
     ],
+    correctAnswer: 'Mejorar la experiencia educativa de los estudiantes',
   },
   {
     id: 2,
@@ -28,6 +30,7 @@ const questions = [
       'Plataforma para comprar libros',
       'Red social para estudiantes',
     ],
+    correctAnswer: 'Acceso a materiales de estudio y tareas',
   },
   {
     id: 3,
@@ -38,6 +41,7 @@ const questions = [
       'Descargando una aplicación de terceros',
       'Pidiendo acceso directo al profesor',
     ],
+    correctAnswer: 'Iniciando sesión en la plataforma con sus credenciales',
   },
   {
     id: 4,
@@ -48,6 +52,7 @@ const questions = [
       'Noticias sobre deportes',
       'Música y podcasts',
     ],
+    correctAnswer: 'Materiales complementarios y evaluaciones',
   },
   {
     id: 5,
@@ -58,19 +63,58 @@ const questions = [
       'Llamando a los padres de los estudiantes',
       'Ofreciendo recompensas monetarias',
     ],
+    correctAnswer: 'Utilizando un sistema de notificaciones y seguimiento de progreso',
   },
 ];
 
 export default function DetailCourseView() {
   const [answers, setAnswers] = useState({});
+  const [username, setUsername] = useState('');
+  const router = useRouter();
+
+  useEffect(() => {
+    // Recuperar el nombre de usuario del local storage
+    const storedUserData = JSON.parse(localStorage.getItem('userData'));
+    if (storedUserData && storedUserData.body && storedUserData.body.username) {
+      setUsername(storedUserData.body.username);
+    } else {
+      console.error('No username found in localStorage');
+    }
+  }, []);
 
   const handleAnswerChange = (questionId, value) => {
     setAnswers({ ...answers, [questionId]: value });
   };
 
-  const handleSubmit = () => {
-    console.log('Respuestas enviadas:', answers);
-    // Aquí puedes agregar la lógica para enviar las respuestas
+  const handleSubmit = async () => {
+    let score = 0;
+    questions.forEach((question) => {
+      if (answers[question.id] === question.correctAnswer) {
+        score += 20;
+      }
+    });
+
+    const payload = {
+      nombreTest: 'TESTA',
+      valorNota: score,
+      username,
+    };
+
+    try {
+      const response = await fetch('http://localhost:8085/api/update/test', {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload),
+      });
+      const result = await response.json();
+      console.log(`La nota es: ${score}`);
+      console.log('Respuesta del servidor:', result);
+      router.push('/courses');
+    } catch (error) {
+      console.error('Error al enviar las respuestas:', error);
+    }
   };
 
   return (
