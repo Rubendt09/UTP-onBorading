@@ -8,7 +8,7 @@ export default function HelpPage() {
   return (
     <>
       <Helmet>
-        <title> Help | UTP+onBoarding </title>
+        <title> Ayuda | UTP+onBoarding </title>
       </Helmet>
 
       <HelpView />

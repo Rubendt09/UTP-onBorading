@@ -8,7 +8,7 @@ export default function CoursesPage() {
   return (
     <>
       <Helmet>
-        <title> Cursos | UTP </title>
+        <title> Cursos | UTP+onBoarding </title>
       </Helmet>
 
       <CoursesView />
