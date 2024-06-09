@@ -1,6 +1,6 @@
 import { Helmet } from 'react-helmet-async';
 
-import { QuestionUtpPortal } from 'src/sections/questions';
+import { QuestionUtpInfo } from 'src/sections/questions';
 
 // ----------------------------------------------------------------------
 
@@ -8,10 +8,10 @@ export default function LoginPage() {
   return (
     <>
       <Helmet>
-        <title> Evaluación | UTP+portal </title>
+        <title> Evaluación | UTP+info </title>
       </Helmet>
 
-      <QuestionUtpPortal />
+      <QuestionUtpInfo />
     </>
   );
 }
