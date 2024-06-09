@@ -15,15 +15,15 @@ import FormLabel from '@mui/material/FormLabel';
 
 // ----------------------------------------------------------------------
 const questions = [
-  { id: 1, text: '¿Cuál es la función principal de la plataforma UTP+class mencionada en el video?', options: ['Gestionar pagos de matrícula', 'Facilitar la gestión de documentos financieros', 'Mejorar la experiencia educativa de los estudiantes', 'No proporcionar servicios de mensajería'] },
-  { id: 2, text: '¿Qué funcionalidad destaca los videos sobre UTP+class?', 
-    options: ['Transmisión de video en vivo', 'Acceso a materiales de estudio y tareas', 'Plataforma para comprar libros', 'Red social para estudiantes'] },
-  { id: 3, text: '¿Cómo pueden los estudiantes acceder a sus cursos en UTP+class?', 
-    options: ['Transmisión de video en vivo', 'Iniciando sesión en la plataforma con sus credenciales', 'Descargando una aplicación de terceros', 'Pidiendo acceso directo al profesor'] },
-  { id: 4, text: '¿Qué recurso importante menciona el video que está disponible para los estudiantes en UTP+class?', 
-    options: ['Juegos interactivos', 'Materiales complementarios y evaluaciones', 'Noticias sobre deportes', 'Música y podcasts'] },
-  { id: 5, text: '¿Cómo se asegura UTP+class de que los estudiantes completen sus tareas?', 
-    options: ['Enviando recordatorios diarios por mensaje de texto', 'Utilizando un sistema de notificaciones y seguimiento de progreso', 'Llamando a los padres de los estudiantes', 'Ofreciendo recompensas monetarias'] },
+  { id: 1, text: '¿Cuál es el objetivo principal de la plataforma UTP+biblio mencionada en el video?', options: ['Proveer servicios de entretenimiento', 'Facilitar el acceso a recursos bibliográficos', 'Organizar eventos sociales', 'Ofrecer cursos extracurriculares'] },
+  { id: 2, text: '¿Cómo pueden los estudiantes acceder a los recursos de UTP+biblio?', 
+    options: ['Descargando una aplicación móvil', 'Iniciando sesión en la plataforma con sus credenciales', 'Visitando la biblioteca física', 'Solicitando acceso por correo electrónico'] },
+  { id: 3, text: '¿Qué tipo de materiales pueden encontrar los estudiantes en UTP+biblio?', 
+    options: ['Videos de entretenimiento', 'Documentos académicos y libros electrónicos', 'Resultados deportivos', 'Música y podcasts'] },
+  { id: 4, text: '¿Qué recurso adicional menciona el video que está disponible para los estudiantes en UTP+biblio?', 
+    options: ['Juegos interactivos', 'Acceso a bases de datos especializadas', 'Tienda de libros', 'Plataforma de redes sociales'] },
+  { id: 5, text: '¿Cómo pueden los estudiantes acceder a sus registros de préstamos en UTP+biblio?', 
+    options: ['Solicitando un reporte en la oficina', 'Consultando la sección de préstamos en la plataforma', 'Esperando el boletín de fin de semestre', 'Pidiendo a un compañero de clase'] },
 ];
 
 
