@@ -28,8 +28,17 @@ import Scrollbar from 'src/components/scrollbar';
 const NOTIFICATIONS = [
   {
     id: faker.string.uuid(),
-    title: 'Your order is placed',
-    description: 'waiting for shipping',
+    title: 'Tu examen N°1 va a vencer',
+    description: 'te quedan 2 horas para dar tu examen',
+    avatar: null,
+    type: 'order_placed',
+      
+    isUnRead: true,
+  },
+  {
+    id: faker.string.uuid(),
+    title: 'El evento "Bienvenido UTP"',
+    description: 'dara comienzo en 2',
     avatar: null,
     type: 'order_placed',
     createdAt: set(new Date(), { hours: 10, minutes: 30 }),
@@ -37,17 +46,8 @@ const NOTIFICATIONS = [
   },
   {
     id: faker.string.uuid(),
-    title: faker.person.fullName(),
-    description: 'answered to your comment on the Minimal',
-    avatar: '/assets/images/avatars/avatar_2.jpg',
-    type: 'friend_interactive',
-    createdAt: sub(new Date(), { hours: 3, minutes: 30 }),
-    isUnRead: true,
-  },
-  {
-    id: faker.string.uuid(),
-    title: 'You have new message',
-    description: '5 unread messages',
+    title: 'Hay un nuevo evento disponible',
+    description: 'Nuevo encuentro',
     avatar: null,
     type: 'chat_message',
     createdAt: sub(new Date(), { days: 1, hours: 3, minutes: 30 }),
@@ -55,22 +55,14 @@ const NOTIFICATIONS = [
   },
   {
     id: faker.string.uuid(),
-    title: 'You have new mail',
-    description: 'sent from Guido Padberg',
+    title: 'Recordatorio',
+    description: 'Valora nuestro contenido',
     avatar: null,
     type: 'mail',
     createdAt: sub(new Date(), { days: 2, hours: 3, minutes: 30 }),
     isUnRead: false,
   },
-  {
-    id: faker.string.uuid(),
-    title: 'Delivery processing',
-    description: 'Your order is being shipped',
-    avatar: null,
-    type: 'order_shipped',
-    createdAt: sub(new Date(), { days: 3, hours: 3, minutes: 30 }),
-    isUnRead: false,
-  },
+  
 ];
 
 export default function NotificationsPopover() {
@@ -121,9 +113,9 @@ export default function NotificationsPopover() {
       >
         <Box sx={{ display: 'flex', alignItems: 'center', py: 2, px: 2.5 }}>
           <Box sx={{ flexGrow: 1 }}>
-            <Typography variant="subtitle1">Notifications</Typography>
+            <Typography variant="subtitle1">Notificaciones</Typography>
             <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-              You have {totalUnRead} unread messages
+              Tienes {totalUnRead} mensajes no leidos
             </Typography>
           </Box>
 
@@ -143,7 +135,7 @@ export default function NotificationsPopover() {
             disablePadding
             subheader={
               <ListSubheader disableSticky sx={{ py: 1, px: 2.5, typography: 'overline' }}>
-                New
+                Nuevo
               </ListSubheader>
             }
           >
@@ -156,7 +148,7 @@ export default function NotificationsPopover() {
             disablePadding
             subheader={
               <ListSubheader disableSticky sx={{ py: 1, px: 2.5, typography: 'overline' }}>
-                Before that
+                Antes de eso
               </ListSubheader>
             }
           >
@@ -170,7 +162,7 @@ export default function NotificationsPopover() {
 
         <Box sx={{ p: 1 }}>
           <Button fullWidth disableRipple>
-            View All
+            Ver todo
           </Button>
         </Box>
       </Popover>
