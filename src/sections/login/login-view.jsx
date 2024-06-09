@@ -14,6 +14,8 @@ import { useRouter } from 'src/routes/hooks';
 import { bgGradient } from 'src/theme/css';
 import Iconify from 'src/components/iconify';
 
+// ----------------------------------------------------------------------
+
 export default function LoginView() {
   const theme = useTheme();
   const router = useRouter();
@@ -41,8 +43,7 @@ export default function LoginView() {
     const data = await response.json();
     setLoading(false);
 
-    if (data.ok && data.message === "SUCCESS") {
-      localStorage.setItem('userData', JSON.stringify(data));
+    if (data.ok && data.message === 'SUCCESS') {
       router.push('/app');
     } else {
       alert('Credenciales incorrectas');
@@ -70,7 +71,6 @@ export default function LoginView() {
       setPassError(true);
     }
   };
-  
 
   const renderForm = (
     <>
@@ -126,7 +126,6 @@ export default function LoginView() {
               </InputAdornment>
             ),
           }}
-          
           sx={{
             '& .MuiOutlinedInput-root': {
               '& fieldset': {
@@ -144,7 +143,7 @@ export default function LoginView() {
       </Stack>
 
       <Stack direction="row" alignItems="center" justifyContent="flex-end" sx={{ my: 2 }}>
-        <Link variant="subtitle2" underline="hover" href="https://contrasena.utp.edu.pe/Recuperacion/OlvideMiClave.aspx" >
+        <Link variant="subtitle2" underline="hover">
           ¿Olvidaste tu contraseña?
         </Link>
       </Stack>
