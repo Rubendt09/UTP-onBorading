@@ -49,25 +49,33 @@ export default function DetailCourseView() {
         {questions.map((question, index) => (
           <Card key={question.id} sx={{ p: 2, mb: 2 }}>
             <Grid sx={{ p: 2 }}>
-              <FormControl component="fieldset">
+              <FormControl component="fieldset" fullWidth>
                 <FormLabel id={`radio-buttons-group-label-${question.id}`}>
-                  <Card sx={{ p: 2, boxShadow: 2, borderRadius: 1, backgroundColor: '#CBDFFF' }}>
-                    <Typography variant="h6" fullWidth>
+                  <Card sx={{ p: 2, mb: 2, boxShadow: 2, borderRadius: 1, backgroundColor: '#CBDFFF'}}>
+                    <Typography variant="h6">
                       {index + 1}. {question.text}
                     </Typography>
                   </Card>
                 </FormLabel>
-                <RadioGroup
-                  aria-labelledby={`radio-buttons-group-label-${question.id}`}
-                  name={`radio-buttons-group-${question.id}`}
-                  value={answers[question.id] || ''}
-                  onChange={(event) => handleAnswerChange(question.id, event.target.value)}
-                  sx={{ ml: 5, mt: 3 }}
-                >
-                  {question.options.map((option, optionIndex) => (
-                    <FormControlLabel key={optionIndex} value={option} control={<Radio />} label={option} sx={{ mt: 1 }} />
-                  ))}
-                </RadioGroup>
+                <Grid>
+                  <RadioGroup
+                    aria-labelledby={`radio-buttons-group-label-${question.id}`}
+                    name={`radio-buttons-group-${question.id}`}
+                    value={answers[question.id] || ''}
+                    onChange={(event) => handleAnswerChange(question.id, event.target.value)}
+                    sx={{ display: 'inline-flex', flexDirection: 'column' }}
+                  >
+                    {question.options.map((option, optionIndex) => (
+                      <FormControlLabel
+                        key={optionIndex}
+                        value={option}
+                        control={<Radio />}
+                        label={option}
+                        sx={{ mt: 1 }}
+                      />
+                    ))}
+                  </RadioGroup>
+                </Grid>
               </FormControl>
             </Grid>
           </Card>
