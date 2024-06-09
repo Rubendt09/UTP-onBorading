@@ -45,7 +45,6 @@ export default function Nav({ openNav, onCloseNav }) {
         display: 'flex',
         borderRadius: 1.5,
         alignItems: 'center',
-        
       }}
     >
       <Avatar src={account.photoURL} alt="photoURL" />
@@ -79,8 +78,6 @@ export default function Nav({ openNav, onCloseNav }) {
         },
       }}
     >
-      
-
       {renderAccount}
 
       {renderMenu}
@@ -150,9 +147,9 @@ function NavItem({ item }) {
         ...(active && {
           color: 'text.secondary',
           fontWeight: 'fontWeightSemiBold',
-          bgcolor: (theme) => alpha( "#accce4", 1),
+          bgcolor: (theme) => alpha('#accce4', 1),
           '&:hover': {
-            bgcolor: (theme) => alpha("#accce4", 0.45),
+            bgcolor: (theme) => alpha('#accce4', 0.45),
           },
         }),
       }}

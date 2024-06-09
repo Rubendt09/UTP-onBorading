@@ -10,8 +10,6 @@ import Button from '@mui/material/Button';
 // ----------------------------------------------------------------------
 
 export default function HelpView() {
-  
-
   return (
     <Container maxWidth="100%">
       <Typography variant="h4" sx={{ mb: 3 }}>
@@ -19,10 +17,8 @@ export default function HelpView() {
       </Typography>
 
       <Accordion sx={{ boxShadow: 3, borderRadius: 2, mt: 4, backgroundColor: '#F3F4F8' }}>
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
-        >
-          <Typography variant="h6">¿Cómo accedo a la plataforma UTPClass?</Typography>
+        <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+          <Typography variant="h6">¿Cómo accedo a la plataforma UTP+Class?</Typography>
         </AccordionSummary>
         <AccordionDetails>
           <Typography variant="body1" color="text.secondary">
@@ -156,10 +152,15 @@ export default function HelpView() {
       </Accordion>
 
       <Box sx={{ mt: 5, width: '100%' }}>
-        <Button variant="contained" color="primary" sx={{ textTransform: 'none' }} fullWidth
-        onClick={()=>{
-          window.location.href = 'https://portal.utp.edu.pe/tramites/ticketera/registro';
-        }}>
+        <Button
+          variant="contained"
+          color="primary"
+          sx={{ textTransform: 'none' }}
+          fullWidth
+          onClick={() => {
+            window.location.href = 'https://portal.utp.edu.pe/tramites/ticketera/registro';
+          }}
+        >
           Necesito Ayuda
         </Button>
       </Box>

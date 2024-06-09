@@ -57,12 +57,14 @@ export default function AppView() {
             <PushPinOutlinedIcon />
           </Avatar>
         </Grid>
-        <Grid item>
-          <Box sx={{ display: 'flex', alignItems: 'center' }}>
+        <Grid item xs>
+          <Box sx={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap' }}>
             <Typography variant="h6" color="text.secondary" sx={{ mr: 1 }}>
               Estas inscrito en:
             </Typography>
-            <Typography variant="h5">Modalidad semipresencial - 50% virtual</Typography>
+            <Typography variant="h5" sx={{ flexShrink: 0 }}>
+              Modalidad semipresencial
+            </Typography>
           </Box>
         </Grid>
       </Grid>
