@@ -4,6 +4,8 @@ import Link from '@mui/material/Link';
 import Card from '@mui/material/Card';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { RouterLink } from 'src/routes/components';
 import Label from 'src/components/label';
 
@@ -12,16 +14,16 @@ import Label from 'src/components/label';
 export default function ShopCourseCard({ course }) {
   const getStatusColor = (score) => {
     if (score >= 60) return 'success';
-    if (score < 60) return 'error';
+    if (score < 60 && score > 0) return 'error';
+    if (score < 0) return 'info';
     return 'info';
   };
 
   const renderStatus = (
-    <Label
-      variant="filled"
-      color={getStatusColor(course.testScore)}
-    >
-      {course.testScore !== null ? `Nota: ${course.testScore}` : 'Por completar'}
+    <Label variant="filled" color={getStatusColor(course.testScore)}>
+      {course.testScore !== null && course.testScore >= 0
+        ? `Nota: ${course.testScore}`
+        : 'Por completar'}
     </Label>
   );
 
@@ -53,30 +55,43 @@ export default function ShopCourseCard({ course }) {
     />
   );
 
+  const handleClick = (event) => {
+    if (course.testScore > 0) {
+      event.preventDefault();
+      toast.warn("El examen ya fue completado.");
+    }
+  };
+
   return (
-    <Link component={RouterLink} href={`/courses/${course.links}`} sx={{ display: 'contents' }} >
-      <Card>
-        <Box sx={{ pt: '35%', position: 'relative' }}>
-          {renderImg}
-        </Box>
+    <>
+      <ToastContainer />
+      <Link
+        component={RouterLink}
+        href={`/courses/${course.links}`}
+        sx={{ display: 'contents' }}
+        onClick={handleClick}
+      >
+        <Card>
+          <Box sx={{ pt: '35%', position: 'relative' }}>{renderImg}</Box>
 
-        <Stack spacing={2} sx={{ p: 3 }}>
-          <Typography color="inherit" underline="hover" variant="subtitle2">
-            {course.name}
-          </Typography>
+          <Stack spacing={2} sx={{ p: 3 }}>
+            <Typography color="inherit" underline="hover" variant="subtitle2">
+              {course.name}
+            </Typography>
 
-          <Stack direction="row" alignItems="center" justifyContent="space-between">
-            <Stack direction="row" alignItems="center" gap={1}>
-              {renderImgTutor}
-              <Typography color="inherit" fontSize={12}>
-                Tutor Curso Introducción
-              </Typography>
+            <Stack direction="row" alignItems="center" justifyContent="space-between">
+              <Stack direction="row" alignItems="center" gap={1}>
+                {renderImgTutor}
+                <Typography color="inherit" fontSize={12}>
+                  Tutor Curso Introducción
+                </Typography>
+              </Stack>
+              {renderStatus}
             </Stack>
-            {renderStatus}
           </Stack>
-        </Stack>
-      </Card>
-    </Link>
+        </Card>
+      </Link>
+    </>
   );
 }
 
