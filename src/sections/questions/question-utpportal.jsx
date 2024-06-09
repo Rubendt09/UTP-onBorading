@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Grid, Button, Container, Typography } from '@mui/material';
+import { useRouter } from 'src/routes/hooks';
 import Card from '@mui/material/Card';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
@@ -69,6 +70,7 @@ const questions = [
 export default function DetailCourseView() {
   const [answers, setAnswers] = useState({});
   const [username, setUsername] = useState('');
+  const router = useRouter();
 
   useEffect(() => {
     // Recuperar el nombre de usuario del local storage
@@ -109,6 +111,7 @@ export default function DetailCourseView() {
       const result = await response.json();
       console.log('Respuestas enviadas:', answers);
       console.log(`La nota es: ${score}`);
+      router.push('/courses');
       if (result.ok) {
         console.log('Respuesta del servidor:', result);
       } else {
