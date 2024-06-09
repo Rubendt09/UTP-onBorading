@@ -52,7 +52,7 @@ export default function CoursesView() {
 
   return (
     <Container>
-      <Typography variant="h4" sx={{ mb: 5 }}>
+      <Typography variant="h4" sx={{ mb: 0 }}>
         Mis cursos
       </Typography>
 
