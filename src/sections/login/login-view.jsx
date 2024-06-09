@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import Box from '@mui/material/Box';
 import Link from '@mui/material/Link';
 import Card from '@mui/material/Card';
@@ -14,6 +14,8 @@ import { useRouter } from 'src/routes/hooks';
 import { bgGradient } from 'src/theme/css';
 import Iconify from 'src/components/iconify';
 
+// ----------------------------------------------------------------------
+
 export default function LoginView() {
   const theme = useTheme();
   const router = useRouter();
@@ -21,13 +23,11 @@ export default function LoginView() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
-  const [emailError, setEmailError] = useState(false);
-  const [passError, setPassError] = useState(false);
 
   const handleLogin = async () => {
     setLoading(true);
 
-    const response = await fetch('http://localhost:8085/api/authenticate', {
+    const response = await fetch('http://localhost:8120/interface/authenticate', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -41,66 +41,31 @@ export default function LoginView() {
     const data = await response.json();
     setLoading(false);
 
-    if (data.ok && data.message === "SUCCESS") {
-      localStorage.setItem('userData', JSON.stringify(data));
+    if (data.username === email && data.password === password) {
       router.push('/app');
     } else {
       alert('Credenciales incorrectas');
     }
   };
 
-  const handleEmailChange = (e) => {
-    const { value } = e.target;
-    const regex = /^[A-Za-z0-9]*$/;
-    if (regex.test(value)) {
-      setEmail(value);
-      setEmailError(false);
-    } else {
-      setEmailError(true);
-    }
-  };
-
-  const handlePassChange = (e) => {
-    const { value } = e.target;
-    const regex = /^[A-Za-z0-9]*$/;
-    if (regex.test(value)) {
-      setPassword(value);
-      setPassError(false);
-    } else {
-      setPassError(true);
-    }
-  };
-  
-
   const renderForm = (
     <>
       <Stack spacing={2}>
+        {' '}
+        {/* Ajuste de espaciado aquí */}
         <Typography variant="subtitle1" gutterBottom>
           Codigo UTP
         </Typography>
         <TextField
           name="email"
           value={email}
-          onChange={handleEmailChange}
+          onChange={(e) => setEmail(e.target.value)}
           InputProps={{
             endAdornment: (
               <InputAdornment position="end">
                 <Iconify icon="ph:student" />
               </InputAdornment>
             ),
-          }}
-          sx={{
-            '& .MuiOutlinedInput-root': {
-              '& fieldset': {
-                borderColor: emailError ? 'red' : '#DFE2E7',
-              },
-              '&:hover fieldset': {
-                borderColor: emailError ? 'red' : 'black',
-              },
-              '&.Mui-focused fieldset': {
-                borderColor: emailError ? 'red' : 'black',
-              },
-            },
           }}
         />
         <Typography
@@ -116,7 +81,7 @@ export default function LoginView() {
           name="password"
           type={showPassword ? 'text' : 'password'}
           value={password}
-          onChange={handlePassChange}
+          onChange={(e) => setPassword(e.target.value)}
           InputProps={{
             endAdornment: (
               <InputAdornment position="end">
@@ -126,25 +91,11 @@ export default function LoginView() {
               </InputAdornment>
             ),
           }}
-          
-          sx={{
-            '& .MuiOutlinedInput-root': {
-              '& fieldset': {
-                borderColor: passError ? 'red' : '#DFE2E7',
-              },
-              '&:hover fieldset': {
-                borderColor: passError ? 'red' : 'black',
-              },
-              '&.Mui-focused fieldset': {
-                borderColor: passError ? 'red' : 'black',
-              },
-            },
-          }}
         />
       </Stack>
 
       <Stack direction="row" alignItems="center" justifyContent="flex-end" sx={{ my: 2 }}>
-        <Link variant="subtitle2" underline="hover" href="https://contrasena.utp.edu.pe/Recuperacion/OlvideMiClave.aspx" >
+        <Link variant="subtitle2" underline="hover">
           ¿Olvidaste tu contraseña?
         </Link>
       </Stack>
