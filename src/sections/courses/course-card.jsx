@@ -12,16 +12,16 @@ import Label from 'src/components/label';
 export default function ShopCourseCard({ course }) {
   const getStatusColor = (score) => {
     if (score >= 60) return 'success';
-    if (score < 60) return 'error';
+    if (score < 60 && score > 0) return 'error';
+    if (score < 0) return 'info';
     return 'info';
   };
 
   const renderStatus = (
-    <Label
-      variant="filled"
-      color={getStatusColor(course.testScore)}
-    >
-      {course.testScore !== null ? `Nota: ${course.testScore}` : 'Por completar'}
+    <Label variant="filled" color={getStatusColor(course.testScore)}>
+      {course.testScore !== null && course.testScore >= 0
+        ? `Nota: ${course.testScore}`
+        : 'Por completar'}
     </Label>
   );
 
@@ -54,11 +54,9 @@ export default function ShopCourseCard({ course }) {
   );
 
   return (
-    <Link component={RouterLink} href={`/courses/${course.links}`} sx={{ display: 'contents' }} >
+    <Link component={RouterLink} href={`/courses/${course.links}`} sx={{ display: 'contents' }}>
       <Card>
-        <Box sx={{ pt: '35%', position: 'relative' }}>
-          {renderImg}
-        </Box>
+        <Box sx={{ pt: '35%', position: 'relative' }}>{renderImg}</Box>
 
         <Stack spacing={2} sx={{ p: 3 }}>
           <Typography color="inherit" underline="hover" variant="subtitle2">
