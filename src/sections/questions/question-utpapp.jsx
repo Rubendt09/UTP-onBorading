@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Grid, Button, Container, Typography } from '@mui/material';
+import { useRouter } from 'src/routes/hooks';
 import Card from '@mui/material/Card';
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
@@ -18,6 +19,7 @@ const questions = [
       'Organizar eventos sociales',
       'Ofrecer cursos extracurriculares',
     ],
+    correctAnswer: 'Facilitar el acceso a información académica',
   },
   {
     id: 2,
@@ -28,6 +30,7 @@ const questions = [
       'Llamando a la oficina académica',
       'Descargando una aplicación móvil adicional',
     ],
+    correctAnswer: 'Iniciando sesión en la app con sus credenciales',
   },
   {
     id: 3,
@@ -38,6 +41,7 @@ const questions = [
       'Resultados deportivos',
       'Videos musicales',
     ],
+    correctAnswer: 'Documentos de texto y libros de la biblioteca',
   },
   {
     id: 4,
@@ -48,6 +52,7 @@ const questions = [
       'Enviando cartas a sus casas',
       'Usando redes sociales',
     ],
+    correctAnswer: 'Mediante notificaciones en la app',
   },
   {
     id: 5,
@@ -58,19 +63,63 @@ const questions = [
       'Tienda de libros',
       'Plataforma de redes sociales',
     ],
+    correctAnswer: 'Biblioteca digital',
   },
 ];
 
 export default function DetailCourseView() {
   const [answers, setAnswers] = useState({});
+  const [username, setUsername] = useState('');
+  const router = useRouter();
+
+  useEffect(() => {
+    // Recuperar el nombre de usuario del local storage
+    const storedUserData = JSON.parse(localStorage.getItem('userData'));
+    if (storedUserData && storedUserData.body && storedUserData.body.username) {
+      setUsername(storedUserData.body.username);
+    } else {
+      console.error('No username found in localStorage');
+    }
+  }, []);
 
   const handleAnswerChange = (questionId, value) => {
     setAnswers({ ...answers, [questionId]: value });
   };
 
-  const handleSubmit = () => {
-    console.log('Respuestas enviadas:', answers);
-    // Aquí puedes agregar la lógica para enviar las respuestas
+  const handleSubmit = async () => {
+    let score = 0;
+    questions.forEach((question) => {
+      if (answers[question.id] === question.correctAnswer) {
+        score += 20;
+      }
+    });
+
+    const payload = {
+      nombreTest: 'TESTC',
+      valorNota: score,
+      username,
+    };
+
+    try {
+      const response = await fetch('http://localhost:8085/api/update/test', {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload),
+      });
+      const result = await response.json();
+      console.log('Respuestas enviadas:', answers);
+      console.log(`La nota es: ${score}`);
+      router.push('/courses');
+      if (result.ok) {
+        console.log('Respuesta del servidor:', result);
+      } else {
+        console.error('Error del servidor:', result.message);
+      }
+    } catch (error) {
+      console.error('Error al enviar las respuestas:', error);
+    }
   };
 
   return (

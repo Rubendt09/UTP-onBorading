@@ -9,11 +9,20 @@ import CourseCard from '../course-card';
 
 export default function CoursesView() {
   const [courses, setCourses] = useState(mockCourses);
+  const [username, setUsername] = useState('');
+
+  useEffect(() => {
+    const storedUserData = JSON.parse(localStorage.getItem('userData'));
+    if (storedUserData && storedUserData.body && storedUserData.body.username) {
+      setUsername(storedUserData.body.username);
+    } else {
+      console.error('No username found in localStorage');
+    }
+  }, []);
 
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const username = 'u1';
         const response = await fetch(`http://localhost:8085/api/user/get-test/${username}`);
         const data = await response.json();
         
@@ -34,8 +43,10 @@ export default function CoursesView() {
       }
     };
 
-    fetchUserData();
-  }, []);
+    if (username) {
+      fetchUserData();
+    }
+  }, [username]);
 
   return (
     <Container>
