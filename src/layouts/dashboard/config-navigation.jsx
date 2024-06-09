@@ -10,17 +10,17 @@ const navConfig = [
   {
     title: 'Inicio',
     path: '/app',
-    icon: icon('house'), // ic_analytics
+    icon: icon('house'), 
   },
   {
     title: 'Ranking',
     path: '/user',
-    icon: icon('ranking'), // c_user
+    icon: icon('ranking'), 
   },
   {
     title: 'evento',
     path: '/eventos',
-    icon: icon('events'), // ic_cart
+    icon: icon('events'), 
   },
   {
     title: 'Cursos',
@@ -33,28 +33,11 @@ const navConfig = [
     icon: icon('help'),
   },
 
-  {/*
-    title: 'Products',
-    path: '/products',
-    icon: icon('help'),
-  },
-  {
-    title: 'blog',
-    path: '/blog',
-    icon: icon('ic_blog'),
-  */},
-
   {
     title: 'Cerrar Sesion',
     path: '/login',
     icon: icon('ic_lock'),
   },
-  
-  {/*
-    title: 'Not found',
-    path: '/404',
-    icon: icon('ic_disabled'),
-*/},
 ];
 
 export default navConfig;
