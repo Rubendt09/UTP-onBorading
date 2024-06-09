@@ -7,7 +7,7 @@ export const IndexPage = lazy(() => import('src/pages/app'));
 export const BlogPage = lazy(() => import('src/pages/blog'));
 export const UtpClass = lazy(() => import('src/pages/utp+class'));
 export const UtpPortal = lazy(() => import('src/pages/utp+portal'));
-export const UtpPortalEvaluacion = lazy(() => import('src/pages/utp+class-evaluation'));
+export const UtpClassEvaluacion = lazy(() => import('src/pages/utp+class-evaluation'));
 export const UserPage = lazy(() => import('src/pages/user'));
 export const LoginPage = lazy(() => import('src/pages/login'));
 export const EventosPage = lazy(() => import('src/pages/eventos'));
@@ -40,7 +40,8 @@ export default function Router() {
         { path: 'courses', element: <CoursesPage /> },
         { path: 'help', element: <HelpPage /> },
         { path: 'courses/utp+class', element: <UtpClass /> },
-        { path: 'courses/utp+portal', element: <UtpClass /> },
+        { path: 'courses/utp+portal', element: <UtpPortal /> },
+        { path: 'courses/utp+class/evaluacion', element: <UtpClassEvaluacion /> },
         { path: 'blog', element: <BlogPage /> },
       ],
     },

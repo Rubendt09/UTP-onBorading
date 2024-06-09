@@ -1,1 +1,1 @@
-export { default as DetailCourseView } from './detail-course-view';
+export { default } from './detail-course-view';

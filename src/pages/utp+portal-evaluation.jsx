@@ -8,7 +8,7 @@ export default function LoginPage() {
   return (
     <>
       <Helmet>
-        <title> Evaluación | UTP+class </title>
+        <title> Evaluación | UTP+portal </title>
       </Helmet>
 
       <QuestionUtpClass />
