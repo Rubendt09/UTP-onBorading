@@ -17,8 +17,8 @@ import { emptyRows, applyFilter, getComparator } from '../utils';
 
 export default function UserPage() {
   const [page, setPage] = useState(0);
-  const [order, setOrder] = useState('desc'); // Set initial order to 'desc'
-  const [orderBy, setOrderBy] = useState('average'); // Set initial orderBy to 'average'
+  const [order, setOrder] = useState('desc');
+  const [orderBy, setOrderBy] = useState('average');
   const [filterName, setFilterName] = useState('');
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [usersData, setUsersData] = useState([]);
@@ -91,16 +91,18 @@ export default function UserPage() {
                 orderBy={orderBy}
                 onRequestSort={handleSort}
                 headLabel={[
+                  { id: 'index', label: 'Puesto', disableSorting: true },
                   { id: 'names', label: 'Nombre del estudiante', disableSorting: true },
-                  { id: 'average', label: 'Puntaje' },
+                  { id: 'average', label: 'Puntaje', disableSorting: true },
                 ]}
               />
               <TableBody>
                 {dataFiltered
                   .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                  .map((row) => (
+                  .map((row, index) => (
                     <UserTableRow
                       key={row.names}
+                      index={page * rowsPerPage + index} // Pass the index for numbering
                       name={row.names}
                       company={row.average}
                       avatarUrl={row.photo}

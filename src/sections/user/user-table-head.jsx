@@ -44,8 +44,17 @@ export default function UserTableHead({
 }
 
 UserTableHead.propTypes = {
-  order: PropTypes.oneOf(['asc', 'desc']),
-  orderBy: PropTypes.string,
-  headLabel: PropTypes.array,
-  onRequestSort: PropTypes.func,
+  order: PropTypes.oneOf(['asc', 'desc']).isRequired,
+  orderBy: PropTypes.string.isRequired,
+  headLabel: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      label: PropTypes.string.isRequired,
+      align: PropTypes.oneOf(['left', 'right', 'center']),
+      disableSorting: PropTypes.bool,
+      width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+      minWidth: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    })
+  ).isRequired,
+  onRequestSort: PropTypes.func.isRequired,
 };
