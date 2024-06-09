@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import Card from '@mui/material/Card';
@@ -7,14 +7,24 @@ import Chip from '@mui/material/Chip';
 import Button from '@mui/material/Button';
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 import Grid from '@mui/material/Grid';
-
+import Modal from '@mui/material/Modal';
 import PushPinOutlinedIcon from '@mui/icons-material/PushPinOutlined';
 import { Avatar } from '@mui/material';
-import Router from 'src/routes/sections';
 
-// ----------------------------------------------------------------------
+// Datos del evento de ejemplo
+const initialEvent = {
+  imagenURL: '../assets/illustrations/inicio.png',
+  name: 'Evento de Ejemplo',
+  fecha: '2024-06-10',
+  ponente: 'Roberto Benitez',
+  descripcion: 'En este evento se tratarán diversos temas como xx',
+};
 
 export default function AppView() {
+  const [selectedEvent, setSelectedEvent] = useState(initialEvent);
+
+  const handleClose = () => setSelectedEvent(null);
+
   return (
     <Container maxWidth="100%">
       <Typography variant="h4" sx={{ mb: 3 }}>
@@ -27,7 +37,10 @@ export default function AppView() {
             <Typography variant="h4" sx={{ mb: 1 }}>
               Charla de cultura UTP
             </Typography>
-            <Typography variant="h6" color="text.secondary" sx={{ mb: 2 }}>
+            <Typography variant="h6" color="text.secondary">
+              09/06/2024
+            </Typography>
+            <Typography  color="text.secondary" sx={{ mb: 2, fontSize: 16 }}>
               18:30 - 20:00
             </Typography>
           </Grid>
@@ -52,83 +65,132 @@ export default function AppView() {
         </Box>
       </Card>
 
-      <Card sx={{ p: 2, boxShadow: 3, borderRadius: 2, mt: 4, backgroundColor: '#f0f4fa' }}>
-        <Grid container alignItems="center" spacing={1}>
-          <Grid item xs={2} container direction="column" alignItems="center">
-            <Avatar sx={{ backgroundColor: '#e0e7ff', color: '#5c6bc0' }}>
-              <PushPinOutlinedIcon />
-            </Avatar>
-          </Grid>
-          <Grid item xs={10}>
-            <Typography variant="h6" color="text.secondary" sx={{ mb: 1 }}>
+      <Grid container alignItems="center" spacing={1} p={2} pl={0} mt={2}>
+        <Grid item>
+          <Avatar sx={{ backgroundColor: '#B2C3FF' }}>
+            <PushPinOutlinedIcon />
+          </Avatar>
+        </Grid>
+        <Grid item xs>
+          <Box sx={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap' }}>
+            <Typography variant="h6" color="text.secondary" sx={{ mr: 1 }}>
               Estas inscrito en:
             </Typography>
-            <Typography variant="h5">Modalidad semipresencial - 50% virtual</Typography>
-          </Grid>
+            <Typography variant="h5" sx={{ flexShrink: 0 }}>
+              Modalidad semipresencial
+            </Typography>
+          </Box>
         </Grid>
-      </Card>
+      </Grid>
 
-      {/** Contenido de app */}
 
-      <Box
-        sx={{
-          display: 'flex',
-          flexDirection: { xs: 'column', md: 'row' }, 
-          alignItems: 'center',
-          justifyContent: 'center',
-          mt: 4,
-          flexWrap: 'wrap',
-          gap: 4, 
+      <Typography variant="h5" color="text.secondary" sx={{ mb: 2, mt:3 }}>
+        Nuestras otras plataformas
+      </Typography>
+
+      {/** Contenido de apps */}
+      <Grid container spacing={2} sx={{ mt: 1 }}>
+        <Grid item xs={12} md={4}>
+          <Card
+            sx={{
+              width: '100%',
+              height: '220px',
+              boxShadow: 3,
+              borderRadius: 2,
+              backgroundImage: 'url(/assets/references/utpclass.png)',
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              cursor: 'pointer',
+            }}
+            onClick={() => {
+              window.location.href = 'https://class.utp.edu.pe/';
+            }}
+          />
+        </Grid>
+
+        <Grid item xs={12} md={4}>
+          <Card
+            sx={{
+              width: '100%',
+              height: '220px',
+              boxShadow: 3,
+              borderRadius: 2,
+              backgroundImage: 'url(/assets/references/utpportal.png)',
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              cursor: 'pointer',
+            }}
+            onClick={() => {
+              window.location.href = 'https://portal.utp.edu.pe/';
+            }}
+          />
+        </Grid>
+
+        <Grid item xs={12} md={4}>
+          <Card
+            sx={{
+              width: '100%',
+              height: '220px',
+              boxShadow: 3,
+              borderRadius: 2,
+              backgroundImage: 'url(/assets/references/utpinfo.png)',
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              cursor: 'pointer',
+            }}
+            onClick={() => {
+              window.location.href = 'https://info.utp.edu.pe/';
+            }}
+          />
+        </Grid>
+      </Grid>
+
+      <Modal 
+        open={!!selectedEvent} 
+        onClose={handleClose}
+        BackdropProps={{
+          style: {
+            backgroundColor: 'rgba(0, 15, 55, 0.8)',
+          },
         }}
       >
-        <Card
+        <Box
           sx={{
-            width: '400px',
-            height: '220px',
-            boxShadow: 3,
-            borderRadius: 2,
-            mb: 4, 
-            backgroundImage: 'url(/assets/references/utpclass.png)',
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            bgcolor: 'background.paper',
+            boxShadow: 24,
+            minHeight: {
+              xs: '55%',
+              sm: '90%',
+            },
+            p: 4,
+            width: {
+              xs: '85%',
+              sm: '40%',
+            },
+            borderRadius: 1,
           }}
-          onClick={() => {
-            window.location.href = 'https://class.utp.edu.pe/';
-          }}
-        />
-
-        <Card
-          sx={{
-            width: '400px',
-            height: '220px',
-            boxShadow: 3,
-            borderRadius: 2,
-            mb: 4, // Espacio entre las tarjetas
-            backgroundImage: 'url(/assets/references/utpportal.png)',
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-          }}
-          onClick={() => {
-            window.location.href = 'https://portal.utp.edu.pe/';
-          }}
-        />
-
-        <Card
-          sx={{
-            width: '400px',
-            height: '220px',
-            boxShadow: 3,
-            borderRadius: 2,
-            mb: 4, // Espacio entre las tarjetas
-            backgroundImage: 'url(/assets/references/utpinfo.png)',
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-          }}
-          onClick={() => {
-            window.location.href = 'https://info.utp.edu.pe/';
-          }}
-        />
-      </Box>
+        >
+          {selectedEvent && (
+            <div>
+              <img 
+                src={selectedEvent.imagenURL} 
+                alt={selectedEvent.name} 
+                style={{ 
+                  width: '100%', 
+                  height: '100%',
+                  objectFit: 'cover', 
+                  marginBottom: 20
+                }}
+              />
+              
+            </div>
+          )}
+        </Box>
+      </Modal>
     </Container>
   );
 }

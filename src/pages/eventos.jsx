@@ -8,7 +8,7 @@ export default function EventosPage() {
   return (
     <>
       <Helmet>
-        <title> Eventos | Minimal UI </title>
+        <title> Eventos | UTP+onBoarding </title>
       </Helmet>
 
       <EventosView />

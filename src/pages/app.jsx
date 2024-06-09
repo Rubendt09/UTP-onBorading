@@ -8,7 +8,7 @@ export default function AppPage() {
   return (
     <>
       <Helmet>
-        <title> Inicio | UTP+onBoarding </title>
+        <title> Prueba | UTP+onBoarding </title>
       </Helmet>
 
       <AppView />

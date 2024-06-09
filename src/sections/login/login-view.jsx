@@ -1,5 +1,4 @@
-import { useState } from 'react';
-
+import React, { useState } from 'react';
 import Box from '@mui/material/Box';
 import Link from '@mui/material/Link';
 import Card from '@mui/material/Card';
@@ -11,35 +10,114 @@ import IconButton from '@mui/material/IconButton';
 import LoadingButton from '@mui/lab/LoadingButton';
 import { alpha, useTheme } from '@mui/material/styles';
 import InputAdornment from '@mui/material/InputAdornment';
-
 import { useRouter } from 'src/routes/hooks';
-
 import { bgGradient } from 'src/theme/css';
-
 import Iconify from 'src/components/iconify';
 
 // ----------------------------------------------------------------------
 
 export default function LoginView() {
   const theme = useTheme();
-
   const router = useRouter();
-
   const [showPassword, setShowPassword] = useState(false);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [emailError, setEmailError] = useState(false);
+  const [passError, setPassError] = useState(false);
 
-  const handleClick = () => {
-    router.push('/dashboard');
+  const handleLogin = async () => {
+    setLoading(true);
+
+    const response = await fetch('http://localhost:8085/api/authenticate', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        username: email,
+        password,
+      }),
+    });
+
+    const data = await response.json();
+    setLoading(false);
+
+    if (data.ok && data.message === 'SUCCESS') {
+      localStorage.setItem('userData', JSON.stringify(data.body)); // Guardar los datos en localStorage
+      router.push('/app');
+    } else {
+      alert('Credenciales incorrectas');
+    }
+  };
+
+  const handleEmailChange = (e) => {
+    const { value } = e.target;
+    const regex = /^[A-Za-z0-9]*$/;
+    if (regex.test(value)) {
+      setEmail(value);
+      setEmailError(false);
+    } else {
+      setEmailError(true);
+    }
+  };
+
+  const handlePassChange = (e) => {
+    const { value } = e.target;
+    const regex = /^[A-Za-z0-9]*$/;
+    if (regex.test(value)) {
+      setPassword(value);
+      setPassError(false);
+    } else {
+      setPassError(true);
+    }
   };
 
   const renderForm = (
     <>
-      <Stack spacing={3}>
-        <TextField name="email" label="Email address" />
-
+      <Stack spacing={2}>
+        <Typography variant="subtitle1" gutterBottom>
+          Codigo UTP
+        </Typography>
+        <TextField
+          name="email"
+          value={email}
+          onChange={handleEmailChange}
+          InputProps={{
+            endAdornment: (
+              <InputAdornment position="end">
+                <Iconify icon="ph:student" />
+              </InputAdornment>
+            ),
+          }}
+          sx={{
+            '& .MuiOutlinedInput-root': {
+              '& fieldset': {
+                borderColor: emailError ? 'red' : '#DFE2E7',
+              },
+              '&:hover fieldset': {
+                borderColor: emailError ? 'red' : 'black',
+              },
+              '&.Mui-focused fieldset': {
+                borderColor: emailError ? 'red' : 'black',
+              },
+            },
+          }}
+        />
+        <Typography
+          variant="caption"
+          color="text.secondary"
+          sx={{ display: 'flex', alignItems: 'center' }}
+        >
+          <Iconify icon="material-symbols:info" /> Ejemplo de usuario: U1533148 (no digitar el
+          @utp.edu.pe)
+        </Typography>
+        <Typography variant="subtitle1">Contraseña</Typography>
         <TextField
           name="password"
-          label="Password"
           type={showPassword ? 'text' : 'password'}
+          value={password}
+          onChange={handlePassChange}
           InputProps={{
             endAdornment: (
               <InputAdornment position="end">
@@ -49,12 +127,25 @@ export default function LoginView() {
               </InputAdornment>
             ),
           }}
+          sx={{
+            '& .MuiOutlinedInput-root': {
+              '& fieldset': {
+                borderColor: passError ? 'red' : '#DFE2E7',
+              },
+              '&:hover fieldset': {
+                borderColor: passError ? 'red' : 'black',
+              },
+              '&.Mui-focused fieldset': {
+                borderColor: passError ? 'red' : 'black',
+              },
+            },
+          }}
         />
       </Stack>
 
-      <Stack direction="row" alignItems="center" justifyContent="flex-end" sx={{ my: 3 }}>
+      <Stack direction="row" alignItems="center" justifyContent="flex-end" sx={{ my: 2 }}>
         <Link variant="subtitle2" underline="hover">
-          Forgot password?
+          ¿Olvidaste tu contraseña?
         </Link>
       </Stack>
 
@@ -64,9 +155,10 @@ export default function LoginView() {
         type="submit"
         variant="contained"
         color="inherit"
-        onClick={handleClick}
+        loading={loading}
+        onClick={handleLogin}
       >
-        Login
+        Iniciar sesión
       </LoadingButton>
     </>
   );
@@ -81,7 +173,6 @@ export default function LoginView() {
         height: 1,
       }}
     >
-
       <Stack alignItems="center" justifyContent="center" sx={{ height: 1 }}>
         <Card
           sx={{
@@ -90,19 +181,17 @@ export default function LoginView() {
             maxWidth: 420,
           }}
         >
-          <Typography variant="h4">Sign in to Minimal</Typography>
+          <img
+            src="/assets/images/logo/utpOnboarding.png"
+            alt="UTP Onboarding Logo"
+            style={{ width: '100%', marginBottom: '30px' }}
+          />
 
           <Typography variant="body2" sx={{ mt: 2, mb: 1 }}>
-            Ingresa con tu cuenta academica 
-            
+            Ingresa con tu cuenta academica
           </Typography>
 
-          <Link variant="subtitle2" sx={{ ml: 0.5 }} >
-              Aun no sabes tus credenciales?
-            </Link>
-
-          <Divider sx={{ my: 3 }}/>
-
+          <Divider sx={{ my: 3 }} />
           {renderForm}
         </Card>
       </Stack>

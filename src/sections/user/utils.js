@@ -29,6 +29,7 @@ function descendingComparator(a, b, orderBy) {
   }
   return 0;
 }
+
 export function getComparator(order, orderBy) {
   return order === 'desc'
     ? (a, b) => descendingComparator(a, b, orderBy)
@@ -44,13 +45,15 @@ export function applyFilter({ inputData, comparator, filterName }) {
     return a[1] - b[1];
   });
 
-  inputData = stabilizedThis.map((el) => el[0]);
+  let filteredData = stabilizedThis.map((el) => el[0]);
 
   if (filterName) {
-    inputData = inputData.filter(
-      (user) => user.name.toLowerCase().indexOf(filterName.toLowerCase()) !== -1
+    filteredData = filteredData.filter(
+      (user) =>
+        user.names &&
+        user.names.toLowerCase().includes(filterName.toLowerCase())
     );
   }
 
-  return inputData;
+  return filteredData;
 }

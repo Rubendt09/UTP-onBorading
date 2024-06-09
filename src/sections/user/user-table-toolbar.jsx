@@ -1,15 +1,25 @@
 import PropTypes from 'prop-types';
-
-import Tooltip from '@mui/material/Tooltip';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import IconButton from '@mui/material/IconButton';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import InputAdornment from '@mui/material/InputAdornment';
-
+import { styled } from '@mui/material/styles';
 import Iconify from 'src/components/iconify';
 
 // ----------------------------------------------------------------------
+
+const SearchStyle = styled(OutlinedInput)(({ theme }) => ({
+  width: '100%',
+  transition: theme.transitions.create(['box-shadow', 'width'], {
+    easing: theme.transitions.easing.easeInOut,
+    duration: theme.transitions.duration.shorter,
+  }),
+  '&.Mui-focused': { width: '100%', boxShadow: theme.customShadows.z8 },
+  '& fieldset': {
+    borderWidth: `1px !important`,
+    borderColor: `${theme.palette.grey[500_32]} !important`,
+  },
+}));
 
 export default function UserTableToolbar({ numSelected, filterName, onFilterName }) {
   return (
@@ -30,10 +40,10 @@ export default function UserTableToolbar({ numSelected, filterName, onFilterName
           {numSelected} selected
         </Typography>
       ) : (
-        <OutlinedInput
+        <SearchStyle
           value={filterName}
           onChange={onFilterName}
-          placeholder="Search user..."
+          placeholder="Buscar Alumno..."
           startAdornment={
             <InputAdornment position="start">
               <Iconify
@@ -43,20 +53,6 @@ export default function UserTableToolbar({ numSelected, filterName, onFilterName
             </InputAdornment>
           }
         />
-      )}
-
-      {numSelected > 0 ? (
-        <Tooltip title="Delete">
-          <IconButton>
-            <Iconify icon="eva:trash-2-fill" />
-          </IconButton>
-        </Tooltip>
-      ) : (
-        <Tooltip title="Filter list">
-          <IconButton>
-            <Iconify icon="ic:round-filter-list" />
-          </IconButton>
-        </Tooltip>
       )}
     </Toolbar>
   );

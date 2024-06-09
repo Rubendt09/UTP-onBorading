@@ -1,65 +1,57 @@
 import PropTypes from 'prop-types';
-
 import Box from '@mui/material/Box';
-import Link from '@mui/material/Link';
 import Card from '@mui/material/Card';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 
-import { fCurrency } from 'src/utils/format-number';
-
-import Label from 'src/components/label';
-import { ColorPreview } from 'src/components/color-utils';
-
-// ----------------------------------------------------------------------
-
-export default function ShopProductCard({ product }) {
+export default function ShopeventoCard({ evento, onClick, sx }) {
   const renderImg = (
     <Box
       component="img"
-      alt={product.name}
-      src={product.cover}
+      alt={evento.name}
+      src={evento.imagenURL} // Aquí se utiliza imagenURL en lugar de imagenUrl
       sx={{
-        width: 1,
-        height: 1,
-        display: 'flex',
+        width: '100%',
+        height: '100%',
         justifyContent: 'center',
         alignItems: 'center',
         objectFit: 'cover',
-        position: 'relative',
       }}
     />
   );
 
-  const renderPrice = (
-    <Typography variant="subtitle1" sx={{ fontSize: '0.8rem' }}>
-      Lugar: {product.lugar}
+  const renderLugar = (
+    <Typography variant="subtitle2" sx={{ fontSize: '0.8rem' }}>
+      Lugar: {evento.lugar}
     </Typography>
   );
 
   const renderFecha = (
-    <Typography variant="subtitle1" sx={{ fontSize: '0.8rem' }}>
-      Fecha: {product.fecha}
+    <Typography variant="subtitle2" sx={{ fontSize: '0.8rem' }}>
+      Fecha: {evento.fecha}
     </Typography>
   );
 
   return (
-    <Box sx={{ width: '100%', maxWidth: 1000, marginRight: '60rem' }}> {/* Aquí estableces el ancho máximo del Card */}
-      <Card>
-        <Grid container>
-          <Grid item xs={4}>
-            <Box sx={{ position: 'relative', pt: '100%', padding: 0 }}>{renderImg}</Box>
+    <Box sx={{ width: '100%', cursor: 'pointer', maxWidth: 1000, ...sx }} onClick={onClick}>
+      <Card sx={{ display: 'flex', flexDirection: 'column', height: '10em' }}>
+        <Grid container sx={{ height: '100%' }}>
+          <Grid item xs={5}>
+            <Box sx={{ position: 'relative', width: '100%', height: '100%', margin: 0, padding: 0 }}>
+              {renderImg}
+            </Box>
           </Grid>
 
-          <Grid item xs={8}>
-            <Stack spacing={0} sx={{ p: 1 }}>
-              <Link color="inherit" underline="hover" variant="subtitle2" noWrap>
-                {product.name}
-              </Link>
 
-              <Stack spacing={1}>
-                {renderPrice}
+          <Grid item xs={7}>
+            <Stack spacing={0} sx={{ p: 1, height: '100%' }}>
+              <Typography variant="h6" sx={{ fontWeight: 'bold', justifyContent: 'center' }}>
+                {evento.name}
+              </Typography>
+
+              <Stack spacing={0} sx={{ justifyContent: 'center', color: '#515860', ml:'12px' }}>
+                {renderLugar}
                 {renderFecha}
               </Stack>
             </Stack>
@@ -70,6 +62,8 @@ export default function ShopProductCard({ product }) {
   );
 }
 
-ShopProductCard.propTypes = {
-  product: PropTypes.object.isRequired,
+ShopeventoCard.propTypes = {
+  evento: PropTypes.object.isRequired,
+  onClick: PropTypes.func.isRequired,
+  sx: PropTypes.object,
 };

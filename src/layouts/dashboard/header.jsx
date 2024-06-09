@@ -1,18 +1,13 @@
 import PropTypes from 'prop-types';
-
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import { useTheme } from '@mui/material/styles';
 import IconButton from '@mui/material/IconButton';
-
 import { useResponsive } from 'src/hooks/use-responsive';
-
 import { bgBlur } from 'src/theme/css';
-
 import Iconify from 'src/components/iconify';
-
 import { NAV, HEADER } from './config-layout';
 import AccountPopover from './common/account-popover';
 import NotificationsPopover from './common/notifications-popover';
@@ -21,23 +16,13 @@ import NotificationsPopover from './common/notifications-popover';
 
 export default function Header({ onOpenNav }) {
   const theme = useTheme();
-
   const lgUp = useResponsive('up', 'lg');
 
   const renderContent = (
     <>
-      {!lgUp && (
-        <IconButton onClick={onOpenNav} sx={{ mr: 1 }}>
-          <Iconify icon="eva:menu-2-fill" />
-        </IconButton>
-      )}
-
-      
-
       <Box sx={{ flexGrow: 1 }} />
 
       <Stack direction="row" alignItems="center" spacing={1}>
-        
         <NotificationsPopover />
         <AccountPopover />
       </Stack>
@@ -66,8 +51,23 @@ export default function Header({ onOpenNav }) {
         sx={{
           height: 1,
           px: { lg: 5 },
+          display: 'flex',
+          justifyContent: 'space-between',
         }}
       >
+        {!lgUp && (
+          <IconButton onClick={onOpenNav} sx={{ mr: 1 }}>
+            <Iconify icon="eva:menu-2-fill" />
+          </IconButton>
+        )}
+
+        <Box
+          component="img"
+          src="/assets/images/logo/utpOnboarding.png"
+          alt="UTP Logo"
+          sx={{ height: 40, ml: 2 }}
+        />
+        <Box sx={{ flexGrow: 1 }} />
         {renderContent}
       </Toolbar>
     </AppBar>
