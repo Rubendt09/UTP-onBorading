@@ -34,7 +34,7 @@ export default function ShopeventoCard({ evento, onClick, sx }) {
   );
 
   return (
-    <Box sx={{ width: '100%', maxWidth: 1000, ...sx }} onClick={onClick}>
+    <Box sx={{ width: '100%', cursor: 'pointer', maxWidth: 1000, ...sx }} onClick={onClick}>
       <Card sx={{ display: 'flex', flexDirection: 'column', height: '10em' }}>
         <Grid container sx={{ height: '100%' }}>
           <Grid item xs={5}>

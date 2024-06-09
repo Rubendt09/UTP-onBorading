@@ -37,7 +37,10 @@ export default function AppView() {
             <Typography variant="h4" sx={{ mb: 1 }}>
               Charla de cultura UTP
             </Typography>
-            <Typography variant="h6" color="text.secondary" sx={{ mb: 2 }}>
+            <Typography variant="h6" color="text.secondary">
+              09/06/2024
+            </Typography>
+            <Typography  color="text.secondary" sx={{ mb: 2, fontSize: 16 }}>
               18:30 - 20:00
             </Typography>
           </Grid>
@@ -62,7 +65,7 @@ export default function AppView() {
         </Box>
       </Card>
 
-      <Grid container alignItems="center" spacing={1} p={2} mt={2}>
+      <Grid container alignItems="center" spacing={1} p={2} pl={0} mt={2}>
         <Grid item>
           <Avatar sx={{ backgroundColor: '#B2C3FF' }}>
             <PushPinOutlinedIcon />
@@ -80,6 +83,11 @@ export default function AppView() {
         </Grid>
       </Grid>
 
+
+      <Typography variant="h5" color="text.secondary" sx={{ mb: 2, mt:3 }}>
+        Nuestras otras plataformas
+      </Typography>
+
       {/** Contenido de apps */}
       <Grid container spacing={2} sx={{ mt: 1 }}>
         <Grid item xs={12} md={4}>
@@ -92,6 +100,7 @@ export default function AppView() {
               backgroundImage: 'url(/assets/references/utpclass.png)',
               backgroundSize: 'cover',
               backgroundPosition: 'center',
+              cursor: 'pointer',
             }}
             onClick={() => {
               window.location.href = 'https://class.utp.edu.pe/';
@@ -109,6 +118,7 @@ export default function AppView() {
               backgroundImage: 'url(/assets/references/utpportal.png)',
               backgroundSize: 'cover',
               backgroundPosition: 'center',
+              cursor: 'pointer',
             }}
             onClick={() => {
               window.location.href = 'https://portal.utp.edu.pe/';
@@ -126,6 +136,7 @@ export default function AppView() {
               backgroundImage: 'url(/assets/references/utpinfo.png)',
               backgroundSize: 'cover',
               backgroundPosition: 'center',
+              cursor: 'pointer',
             }}
             onClick={() => {
               window.location.href = 'https://info.utp.edu.pe/';
