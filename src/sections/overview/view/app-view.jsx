@@ -13,7 +13,7 @@ import { Avatar } from '@mui/material';
 
 // Datos del evento de ejemplo
 const initialEvent = {
-  imagenURL: '../assets/illustrations/inicio.jpg',
+  imagenURL: '../assets/illustrations/inicio.png',
   name: 'Evento de Ejemplo',
   fecha: '2024-06-10',
   ponente: 'Roberto Benitez',
@@ -164,12 +164,12 @@ export default function AppView() {
             boxShadow: 24,
             minHeight: {
               xs: '55%',
-              sm: '100%',
+              sm: '90%',
             },
             p: 4,
             width: {
-              xs: '95%',
-              sm: '50%',
+              xs: '85%',
+              sm: '40%',
             },
             borderRadius: 1,
           }}
