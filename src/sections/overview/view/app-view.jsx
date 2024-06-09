@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import Card from '@mui/material/Card';
@@ -7,13 +7,24 @@ import Chip from '@mui/material/Chip';
 import Button from '@mui/material/Button';
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 import Grid from '@mui/material/Grid';
-
+import Modal from '@mui/material/Modal';
 import PushPinOutlinedIcon from '@mui/icons-material/PushPinOutlined';
 import { Avatar } from '@mui/material';
 
-// ----------------------------------------------------------------------
+// Datos del evento de ejemplo
+const initialEvent = {
+  imagenURL: '../assets/illustrations/inicio.jpg',
+  name: 'Evento de Ejemplo',
+  fecha: '2024-06-10',
+  ponente: 'Roberto Benitez',
+  descripcion: 'En este evento se tratarán diversos temas como xx',
+};
 
 export default function AppView() {
+  const [selectedEvent, setSelectedEvent] = useState(initialEvent);
+
+  const handleClose = () => setSelectedEvent(null);
+
   return (
     <Container maxWidth="100%">
       <Typography variant="h4" sx={{ mb: 3 }}>
@@ -122,6 +133,53 @@ export default function AppView() {
           />
         </Grid>
       </Grid>
+
+      <Modal 
+        open={!!selectedEvent} 
+        onClose={handleClose}
+        BackdropProps={{
+          style: {
+            backgroundColor: 'rgba(0, 15, 55, 0.8)',
+          },
+        }}
+      >
+        <Box
+          sx={{
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            bgcolor: 'background.paper',
+            boxShadow: 24,
+            minHeight: {
+              xs: '55%',
+              sm: '100%',
+            },
+            p: 4,
+            width: {
+              xs: '95%',
+              sm: '50%',
+            },
+            borderRadius: 1,
+          }}
+        >
+          {selectedEvent && (
+            <div>
+              <img 
+                src={selectedEvent.imagenURL} 
+                alt={selectedEvent.name} 
+                style={{ 
+                  width: '100%', 
+                  height: '100%',
+                  objectFit: 'cover', 
+                  marginBottom: 20
+                }}
+              />
+              
+            </div>
+          )}
+        </Box>
+      </Modal>
     </Container>
   );
 }
