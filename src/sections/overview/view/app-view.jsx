@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import Card from '@mui/material/Card';
@@ -22,6 +23,7 @@ const initialEvent = {
 
 export default function AppView() {
   const [selectedEvent, setSelectedEvent] = useState(initialEvent);
+  const navigate = useNavigate();
 
   const handleClose = () => setSelectedEvent(null);
 
@@ -40,7 +42,7 @@ export default function AppView() {
             <Typography variant="h6" color="text.secondary">
               09/06/2024
             </Typography>
-            <Typography  color="text.secondary" sx={{ mb: 2, fontSize: 16 }}>
+            <Typography color="text.secondary" sx={{ mb: 2, fontSize: 16 }}>
               18:30 - 20:00
             </Typography>
           </Grid>
@@ -59,6 +61,7 @@ export default function AppView() {
             startIcon={<CalendarTodayIcon />}
             sx={{ textTransform: 'none' }}
             fullWidth
+            onClick={() => navigate('/eventos')}
           >
             Ver mi horario
           </Button>
@@ -83,8 +86,7 @@ export default function AppView() {
         </Grid>
       </Grid>
 
-
-      <Typography variant="h5" color="text.secondary" sx={{ mb: 2, mt:3 }}>
+      <Typography variant="h5" color="text.secondary" sx={{ mb: 2, mt: 3 }}>
         Nuestras otras plataformas
       </Typography>
 
@@ -143,10 +145,28 @@ export default function AppView() {
             }}
           />
         </Grid>
+
+        <Grid item xs={12} md={4}>
+          <Card
+            sx={{
+              width: '100%',
+              height: '220px',
+              boxShadow: 3,
+              borderRadius: 2,
+              backgroundImage: 'url(/assets/references/utpbiblio.png)',
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              cursor: 'pointer',
+            }}
+            onClick={() => {
+              window.location.href = 'https://tubiblioteca.utp.edu.pe/';
+            }}
+          />
+        </Grid>
       </Grid>
 
-      <Modal 
-        open={!!selectedEvent} 
+      <Modal
+        open={!!selectedEvent}
         onClose={handleClose}
         BackdropProps={{
           style: {
@@ -176,17 +196,16 @@ export default function AppView() {
         >
           {selectedEvent && (
             <div>
-              <img 
-                src={selectedEvent.imagenURL} 
-                alt={selectedEvent.name} 
-                style={{ 
-                  width: '100%', 
+              <img
+                src={selectedEvent.imagenURL}
+                alt={selectedEvent.name}
+                style={{
+                  width: '100%',
                   height: '100%',
-                  objectFit: 'cover', 
-                  marginBottom: 20
+                  objectFit: 'cover',
+                  marginBottom: 20,
                 }}
               />
-              
             </div>
           )}
         </Box>
