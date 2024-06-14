@@ -1,18 +1,59 @@
 import React, { useState } from 'react';
 import Container from '@mui/material/Container';
-import { Box, TextField, IconButton } from '@mui/material';
+import { Box, IconButton, List, ListItem, ListItemText, Paper, TextField } from '@mui/material'; // eslint-disable-line perfectionist/sort-named-imports
 import SendIcon from '@mui/icons-material/Send';
-import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import Typography from '@mui/material/Typography';
+import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import Button from '@mui/material/Button';
 
 export default function HelpView() {
-  const [respuesta, setRespuesta] = useState('Aquí va tu respuesta'); // Estado para la respuesta
-  const [nuevaRespuesta, setNuevaRespuesta] = useState(''); // Estado para la nueva respuesta
+  const [historial, setHistorial] = useState([]); 
+  const [pregunta, setPregunta] = useState(''); 
 
-  const handleSendClick = () => {
-    setRespuesta(nuevaRespuesta); // Actualiza la respuesta con la nueva respuesta
-    setNuevaRespuesta(''); // Limpia el campo de texto
+  const procesarRespuesta = (respuesta) => {
+    // eliminar la sección de citas
+    const indexCitations = respuesta.indexOf('<citations>');
+    if (indexCitations !== -1) {
+      respuesta = respuesta.substring(0, indexCitations).trim();
+    }
+
+    // Opcional: Elimina caracteres de referencia como [^1.1.0]
+    respuesta = respuesta.replace(/\[\^.*?\]/g, '');
+
+    return respuesta;
+  };
+
+  const handleSendClick = async () => {
+    if (pregunta.trim() === '') return; 
+
+    const nuevaPregunta = { tipo: 'pregunta', texto: pregunta };
+
+    setHistorial((prevHistorial) => [...prevHistorial, nuevaPregunta]); 
+
+    try {
+      const response = await fetch('https://api.stack-ai.com/inference/v0/run/679da2fb-16cd-40a6-b164-428f53bd27a7/666a9ceb6a84761fcb99cba3', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer 0c667cc4-116c-4223-b2fb-95401644be86',
+        },
+        body: JSON.stringify({ "in-0": pregunta }),
+      });
+
+      const data = await response.json();
+      const respuestaOriginal = data.outputs['out-0'];
+      const respuestaProcesada = procesarRespuesta(respuestaOriginal);
+
+      const nuevaRespuesta = { tipo: 'respuesta', texto: respuestaProcesada };
+
+      setHistorial((prevHistorial) => [...prevHistorial, nuevaRespuesta]); 
+    } catch (error) {
+      console.error('Error al obtener la respuesta de la API:', error);
+      const errorRespuesta = { tipo: 'respuesta', texto: 'Hubo un error al obtener la respuesta. Por favor, inténtalo nuevamente.' };
+      setHistorial((prevHistorial) => [...prevHistorial, errorRespuesta]);
+    }
+
+    setPregunta(''); 
   };
 
   return (
@@ -21,84 +62,68 @@ export default function HelpView() {
         Preguntas frecuentes
       </Typography>
 
-      <Box marginTop={3} sx={{ borderRadius: '8px' }}>
-        <Box
-          display="flex"
-          alignItems="center"
-          marginTop={2}
-          marginBottom={2}
+      <Paper sx={{ p: 2, borderRadius: '8px', height: '60vh', overflowY: 'auto' }}>
+        <List>
+          {historial.map((item, index) => (
+            <ListItem key={index}>
+              <ListItemText
+                primary={item.texto}
+                primaryTypographyProps={{
+                  align: item.tipo === 'pregunta' ? 'right' : 'left',
+                  color: item.tipo === 'pregunta' ? 'primary' : 'textSecondary',
+                }}
+              />
+            </ListItem>
+          ))}
+        </List>
+      </Paper>
+
+      <Box display="flex" alignItems="center" marginTop={2} marginBottom={2}>
+        <TextField
+          name="text"
+          placeholder="Pregúntale a +Assistant"
+          variant="outlined"
+          value={pregunta}
+          onChange={(e) => setPregunta(e.target.value)}
           sx={{
             backgroundColor: 'white',
-            borderRadius: '8px',
-            padding: '5px',
+            borderRadius: '50px',
+            padding: '0px',
             width: '100%',
-          }}
-        >
-          <Typography
-            variant="h5"
-            color="text.secondary"
-            sx={{ mb: 2, mt: 3 }}
-            style={{
-              width: '100%',
-              border: 'none',
-              resize: 'none',
-              outline: 'none',
-              textAlign: 'right',
-              padding: '10px',
-              fontSize: '16px',
-              fontWeight: 'normal',
-              fontFamily: 'Roboto, sans-serif',
-            }}
-          >
-            {respuesta}
-          </Typography>
-        </Box>
-        <Box display="flex" alignItems="center" marginBottom={2}>
-          <TextField
-            name="text"
-            placeholder="Pregúntale a +Assistant"
-            variant="outlined"
-            value={nuevaRespuesta} // Valor controlado por el estado
-            onChange={(e) => setNuevaRespuesta(e.target.value)} // Actualiza el estado con el valor del campo de texto
-            sx={{
-              backgroundColor: 'white',
-              borderRadius: '50px',
-              padding: '0px',
-              width: '100%',
-              '& .MuiOutlinedInput-root': {
-                '& fieldset': {
-                  border: 'none',
-                },
+            '& .MuiOutlinedInput-root': {
+              '& fieldset': {
+                border: 'none',
               },
-            }}
-            fullWidth
-          />
-          <IconButton onClick={handleSendClick}>
-            <SendIcon sx={{ color: '#F82650' }} />
-          </IconButton>
-        </Box>
-        <Button
-          variant="contained"
-          sx={{
-            backgroundColor: '#25D366', // Color de WhatsApp
-            color: 'white',
-            textTransform: 'none',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            '&:hover': {
-              backgroundColor: '#25D366',
             },
           }}
           fullWidth
-          startIcon={<WhatsAppIcon />}
-          component="a"
-          href="https://api.whatsapp.com/send?phone=51960252970&text=Hola,%20tengo%20una%20consulta" // Reemplaza con la URL de WhatsApp que desees
-          target="_blank" // Para abrir en una nueva pestaña
-        >
-          Necesito ayuda orientada
-        </Button>
+        />
+        <IconButton onClick={handleSendClick}>
+          <SendIcon sx={{ color: '#5B36F2' }} />
+        </IconButton>
       </Box>
+
+      <Button
+        variant="contained"
+        sx={{
+          backgroundColor: '#25D366', 
+          color: 'white',
+          textTransform: 'none',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          '&:hover': {
+            backgroundColor: '#25D366',
+          },
+        }}
+        fullWidth
+        startIcon={<WhatsAppIcon />}
+        component="a"
+        href="https://api.whatsapp.com/send?phone=51960252970&text=Hola,%20tengo%20una%20consulta" 
+        target="_blank" 
+        >
+        Necesito ayuda orientada
+      </Button>
     </Container>
   );
 }

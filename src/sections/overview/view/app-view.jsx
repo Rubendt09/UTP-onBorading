@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react'; // Asegúrate de importar useEffect
 import { useNavigate } from 'react-router-dom';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
@@ -12,7 +12,6 @@ import Modal from '@mui/material/Modal';
 import PushPinOutlinedIcon from '@mui/icons-material/PushPinOutlined';
 import { Avatar } from '@mui/material';
 
-// Datos del evento de ejemplo
 const initialEvent = {
   imagenURL: '../assets/illustrations/inicio.png',
   name: 'Evento de Ejemplo',
@@ -23,14 +22,22 @@ const initialEvent = {
 
 export default function AppView() {
   const [selectedEvent, setSelectedEvent] = useState(initialEvent);
+  const [userName, setUserName] = useState('');
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const userData = JSON.parse(localStorage.getItem('userData'));
+    if (userData && userData.names) {
+      setUserName(userData.names);
+    }
+  }, []);
 
   const handleClose = () => setSelectedEvent(null);
 
   return (
     <Container maxWidth="100%">
       <Typography variant="h4" sx={{ mb: 3 }}>
-        Hola, Ruben Dominguez 👋
+        Hola, {userName} 👋
       </Typography>
 
       <Card sx={{ p: 2, boxShadow: 3, borderRadius: 2 }}>
@@ -90,7 +97,6 @@ export default function AppView() {
         Nuestras otras plataformas
       </Typography>
 
-      {/** Contenido de apps */}
       <Grid container spacing={2} sx={{ mt: 1 }}>
         <Grid item xs={12} md={4}>
           <Card
