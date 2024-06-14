@@ -66,7 +66,7 @@ export default function HelpView() {
       <Paper sx={{ p: 2, borderRadius: '8px', height: '60vh', overflowY: 'auto' }}>
         <List>
           {historial.map((item, index) => (
-            <ListItem key={index}>
+            <ListItem key={index} sx={{ justifyContent: item.tipo === 'pregunta' ? 'flex-end' : 'flex-start' }}>
               <ListItemText
                 primary={
                   item.tipo === 'respuesta' ? (
@@ -85,11 +85,12 @@ export default function HelpView() {
                 primaryTypographyProps={{
                   align: item.tipo === 'pregunta' ? 'right' : 'left',
                   backgroundColor: item.tipo === 'pregunta' ? '#5B36F2' : '#ECF4F9',
-                  /* color: item.tipo === 'pregunta' ? 'primary' : 'textSecondary', */
                   color: item.tipo === 'pregunta' ? 'white' : 'textSecondary',
                   borderRadius: 1,
-                  width: item.tipo === 'pregunta' ? 'fitContent' : '100%',
                   padding: 1.5,
+                  width: 'fit-content',
+                  maxWidth: '80%',
+                  marginLeft: item.tipo === 'pregunta' ? 'auto' : 0,
                 }}
               />
             </ListItem>
