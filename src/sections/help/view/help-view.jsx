@@ -59,7 +59,7 @@ export default function HelpView() {
   return (
     <Container maxWidth="100%">
       <Typography variant="h4" sx={{ mb: 3 }}>
-        Preguntas frecuentes
+        Pregúntale a +Assistant
       </Typography>
 
       <Paper sx={{ p: 2, borderRadius: '8px', height: '60vh', overflowY: 'auto' }}>

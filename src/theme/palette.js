@@ -90,6 +90,15 @@ export const common = {
   white: '#FFFFFF',
 };
 
+export const culm = {
+  lighter: '#D2D2D2',
+  light: '#D2D2D2',
+  main: '#D2D2D2  ',
+  dark: '#006C9C',
+  darker: '#003768',
+  contrastText: '#000000',
+};
+
 export const action = {
   hover: alpha(grey[500], 0.08),
   selected: alpha(grey[500], 0.16),
@@ -104,6 +113,7 @@ const base = {
   primary,
   secondary,
   info,
+  culm,
   success,
   warning,
   error,
