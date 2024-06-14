@@ -9,7 +9,7 @@ export default function UserTableRow({
   index,
   name,
   avatarUrl,
-  company,
+  company, 
 }) {
   // Determine the background color based on the rowIndex
   const getBackgroundColor = (rowIndex) => {
