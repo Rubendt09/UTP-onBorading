@@ -9,7 +9,7 @@ export default function UserTableRow({
   index,
   name,
   avatarUrl,
-  company,
+  company, 
 }) {
   return (
     <TableRow hover tabIndex={-1}>
