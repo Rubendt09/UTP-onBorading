@@ -5,6 +5,7 @@ import SendIcon from '@mui/icons-material/Send';
 import Typography from '@mui/material/Typography';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import Button from '@mui/material/Button';
+import ReactTypingEffect from 'react-typing-effect'; // Asegúrate de instalar esta librería
 
 export default function HelpView() {
   const [historial, setHistorial] = useState([]); 
@@ -67,10 +68,28 @@ export default function HelpView() {
           {historial.map((item, index) => (
             <ListItem key={index}>
               <ListItemText
-                primary={item.texto}
+                primary={
+                  item.tipo === 'respuesta' ? (
+                    <ReactTypingEffect
+                      text={item.texto}
+                      speed={30}
+                      eraseDelay={9999999}
+                      typingDelay={0}
+                      eraseSpeed={0}
+                      cursor={' '}
+                    />
+                  ) : (
+                    item.texto
+                  )
+                }
                 primaryTypographyProps={{
                   align: item.tipo === 'pregunta' ? 'right' : 'left',
-                  color: item.tipo === 'pregunta' ? 'primary' : 'textSecondary',
+                  backgroundColor: item.tipo === 'pregunta' ? '#5B36F2' : '#ECF4F9',
+                  /* color: item.tipo === 'pregunta' ? 'primary' : 'textSecondary', */
+                  color: item.tipo === 'pregunta' ? 'white' : 'textSecondary',
+                  borderRadius: 1,
+                  width: item.tipo === 'pregunta' ? 'fitContent' : '100%',
+                  padding: 1.5,
                 }}
               />
             </ListItem>

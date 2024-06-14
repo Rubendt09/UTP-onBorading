@@ -11,8 +11,16 @@ export default function UserTableRow({
   avatarUrl,
   company, 
 }) {
+  // Determine the background color based on the rowIndex
+  const getBackgroundColor = (rowIndex) => {
+    if (rowIndex === 0) return '#f5f5dc'; // Color for the first row
+    if (rowIndex === 1) return '#f0f8ff'; // Color for the second row
+    if (rowIndex === 2) return '#faebd7'; // Color for the third row
+    return 'inherit'; // Default color for other rows
+  };
+
   return (
-    <TableRow hover tabIndex={-1}>
+    <TableRow hover tabIndex={-1} sx={{ backgroundColor: getBackgroundColor(index) }}>
       <TableCell>{index + 1}</TableCell> {/* Display the index */}
       <TableCell component="th" scope="row" padding="2" style={{ width: '50%' }}>
         <Stack direction="row" alignItems="center" spacing={2}>
