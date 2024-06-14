@@ -21,59 +21,59 @@ import { emptyRows, applyFilter, getComparator } from '../utils';
 const images = [
   {
     label: 'PRIMER PUESTO',
-    description: 'Instax Mini 11',
+    description: '-20% en la primera cuota',
     puesto: '1ER PUESTO',
     imgPath:
-      'https://images.unsplash.com/photo-1537944434965-cf4679d1a598?auto=format&fit=crop&w=400&h=250&q=60',
+      '/assets/illustrations/promoCuota.png',
   },
   {
     label: 'SEGUNDO PUESTO',
-    description: 'Amazon Echo Dot 5ta gen',
+    description: '1 semana de almuerzo gratis',
     puesto: '2DO PUESTO',
     imgPath:
-      'https://images.unsplash.com/photo-1538032746644-0212e812a9e7?auto=format&fit=crop&w=400&h=250&q=60',
+    '/assets/illustrations/promoAlmuerzo.png',
   },
   {
     label: 'TERCER PUESTO',
-    description: 'Convertidor smart TV',
+    description: '1 mes de membresía black',
     puesto: '3ER PUESTO',
     imgPath:
-      'https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=400&h=250',
+    '/assets/illustrations/promoSmart.jpeg',
   },
   {
     label: 'CUARTO PUESTO',
-    description: 'Full Pass de 1 mes',
+    description: 'Comida en ChinaWok',
     puesto: '4TO PUESTO',
     imgPath:
-      'https://images.unsplash.com/photo-1512341689857-198e7e2f3ca8?auto=format&fit=crop&w=400&h=250&q=60',
+    '/assets/illustrations/promoChinaWok.png',
   },
   {
     label: 'QUINTO PUESTO',
-    description: 'Curso gratis',
+    description: '-50% en Dunkin Donuts',
     puesto: '5TO PUESTO',
     imgPath:
-      'https://images.unsplash.com/photo-1512341689857-198e7e2f3ca8?auto=format&fit=crop&w=400&h=250&q=60',
+      '/assets/illustrations/promoDunkin.png',
   },
   {
     label: 'PUESTO 6-8',
-    description: 'Premio adicional 1',
+    description: 'Merchandising UTP',
     puesto: 'TOP 8',
     imgPath:
-      'https://images.unsplash.com/photo-1537944434965-cf4679d1a598?auto=format&fit=crop&w=400&h=250&q=60',
+    '/assets/illustrations/promoMerchand.jpg',
   },
   {
     label: 'PUESTO 8-10',
-    description: 'Premio adicional 2',
+    description: 'Promo bembos personal',
     puesto: 'TOP 10',
     imgPath:
-      'https://images.unsplash.com/photo-1512341689857-198e7e2f3ca8?auto=format&fit=crop&w=400&h=250&q=60',
+      '/assets/illustrations/promoBembos.jpg',
   },
   {
     label: 'PUESTO 11-20',
-    description: 'Premio adicional 3',
+    description: 'Entrada 2D en Cineplanet',
     puesto: 'TOP 20',
     imgPath:
-      'https://images.unsplash.com/photo-1512341689857-198e7e2f3ca8?auto=format&fit=crop&w=400&h=250&q=60',
+    '/assets/illustrations/promoCineplanet.jpg',
   },
 ];
 
