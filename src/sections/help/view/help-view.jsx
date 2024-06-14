@@ -164,6 +164,9 @@ export default function HelpView() {
           Necesito Ayuda
         </Button>
       </Box>
+
+      
+
     </Container>
   );
 }

@@ -80,62 +80,6 @@ const images = [
     imgPath:
       'https://images.unsplash.com/photo-1512341689857-198e7e2f3ca8?auto=format&fit=crop&w=400&h=250&q=60',
   },
-  {
-    label: 'PRIMER PUESTO',
-    description: 'Instax Mini 11',
-    puesto: '1ER PUESTO',
-    imgPath:
-      'https://images.unsplash.com/photo-1537944434965-cf4679d1a598?auto=format&fit=crop&w=400&h=250&q=60',
-  },
-  {
-    label: 'SEGUNDO PUESTO',
-    description: 'Amazon Echo Dot 5ta gen',
-    puesto: '2DO PUESTO',
-    imgPath:
-      'https://images.unsplash.com/photo-1538032746644-0212e812a9e7?auto=format&fit=crop&w=400&h=250&q=60',
-  },
-  {
-    label: 'TERCER PUESTO',
-    description: 'Convertidor smart TV',
-    puesto: '3ER PUESTO',
-    imgPath:
-      'https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=400&h=250',
-  },
-  {
-    label: 'CUARTO PUESTO',
-    description: 'Full Pass de 1 mes',
-    puesto: '4TO PUESTO',
-    imgPath:
-      'https://images.unsplash.com/photo-1512341689857-198e7e2f3ca8?auto=format&fit=crop&w=400&h=250&q=60',
-  },
-  {
-    label: 'QUINTO PUESTO',
-    description: 'Curso gratis',
-    puesto: '5TO PUESTO',
-    imgPath:
-      'https://images.unsplash.com/photo-1512341689857-198e7e2f3ca8?auto=format&fit=crop&w=400&h=250&q=60',
-  },
-  {
-    label: 'PUESTO 6-8',
-    description: 'Premio adicional 1',
-    puesto: 'TOP 8',
-    imgPath:
-      'https://images.unsplash.com/photo-1537944434965-cf4679d1a598?auto=format&fit=crop&w=400&h=250&q=60',
-  },
-  {
-    label: 'PUESTO 8-10',
-    description: 'Premio adicional 2',
-    puesto: 'TOP 10',
-    imgPath:
-      'https://images.unsplash.com/photo-1512341689857-198e7e2f3ca8?auto=format&fit=crop&w=400&h=250&q=60',
-  },
-  {
-    label: 'PUESTO 11-20',
-    description: 'Premio adicional 3',
-    puesto: 'TOP 20',
-    imgPath:
-      'https://images.unsplash.com/photo-1512341689857-198e7e2f3ca8?auto=format&fit=crop&w=400&h=250&q=60',
-  },
 ];
 
 export default function UserPage() {
@@ -150,11 +94,11 @@ export default function UserPage() {
   const maxSteps = Math.ceil(images.length / 6); // Ajuste para mover de cuatro en cuatro
 
   const handleNext = () => {
-    setActiveStep((prevActiveStep) => (prevActiveStep + 2) % images.length);
+    setActiveStep((prevActiveStep) => (prevActiveStep + 4) % images.length);
   };
 
   const handleBack = () => {
-    setActiveStep((prevActiveStep) => (prevActiveStep - 2 + images.length) % images.length);
+    setActiveStep((prevActiveStep) => (prevActiveStep - 4 + images.length) % images.length);
   };
 
   useEffect(() => {
