@@ -138,7 +138,7 @@ export default function UserPage() {
       </Stack>
 
       <Typography variant="h5" sx={{ width: '100%', textAlign: 'center', marginBottom: 3 }}>
-        Todos los meses premiamos a los 20 primeros puestos
+        Queremos premiarte por completar satisfactoriamente los cursos de UTP+ OnBoarding
       </Typography>
       <Box
         sx={{
